@@ -25,5 +25,9 @@ class NewsletterController extends Controller
 
         return 'sucess';
     }
+
+    public function info(Request $request){
+      
+    }
 }
 

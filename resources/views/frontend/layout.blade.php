@@ -7,7 +7,7 @@
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html lang="vi">
 <!--<![endif]-->
-<head>	
+<head>
 	<title>@yield('title')</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="robots" content="index,follow"/>
@@ -31,500 +31,179 @@
     <meta name="twitter:title" content="@yield('title')" />        
     <meta name="twitter:image" content="{{ Helper::showImage($socialImage) }}" />
 	<link rel="icon" href="{{ URL::asset('assets/images/favicon.ico') }}" type="image/x-icon">
+	<!-- <link rel="shortcut icon" href="" type="image/x-icon">
+	<link rel="icon" href="" type="image/x-icon"> -->
 	<!-- ===== Style CSS Common ===== -->
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/css/style.css') }}">
 	<!-- ===== Responsive CSS ===== -->
     <link href="{{ URL::asset('assets/css/responsive.css') }}" rel="stylesheet">
-      <link rel="stylesheet" href="{{ URL::asset('admin/dist/css/sweetalert2.min.css') }}">  
     
     <!-- HTML5 Shim and Respond.js') }} IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js') }} doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
-		<link href='{{ URL::asset('assets/css/animations-ie-fix.css') }}' rel='stylesheet'>
+		<link href='{{ URL::asset('assets/animations-ie-fix.css') }}' rel='stylesheet'>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js') }}"></script>
 		<script src="https://oss.maxcdn.com/libs/respond.{{ URL::asset('assets/js/1.4.2/respond.min.js') }}"></script>
 	<![endif]-->
-	<style type="text/css">
-		.bootstrap-select>.dropdown-toggle.bs-placeholder, .bootstrap-select>.dropdown-toggle.bs-placeholder:active, .bootstrap-select>.dropdown-toggle.bs-placeholder:focus, .bootstrap-select>.dropdown-toggle.bs-placeholder:hover{
-		color:#444 !important;
-	}
-		
-	</style>
 </head>
-<body {{ \Request::route()->getName() == "home" ? 'class=page_home' : "" }}>
+<body>
 	
-	<header id="header" class="header">
-		<!-- <div class="header-register">
-			<div class="container">
-				<div class="logon">
-		            <a href="/dang-nhap.htm" rel="nofollow" title="Đăng nhập">
-		                <span>Đăng nhập</span>
-		            </a>
-		        </div>
-		        <div class="register">
-		            <a href="/dang-ky.htm" rel="nofollow" title="Đăng ký">
-		                <span>Đăng ký</span>
-		            </a>
-		        </div>
-		        <div id="pnBxh">
-	          		<div class="bxh">
-		                <a href="#" rel="nofollow" title="Banxehoi.com" target="_blank">
-		                    <span>Banxehoi.com</span>
-		                </a>
-		            </div>
+	<div class="wrapper container" id="wrapper">
+
+		<header id="header" class="header">
+			<section class="clearfix">
+				<div class="col-sm-3 col-xs-12 logo">
+					<img src="images/logo.jpg" alt="Logo">
 				</div>
-			</div>
-		</div> -->
-		<div class="header-logo">
-	        <div class="container">
-	            <div class="logo">
-	                <a href="{{ route('home') }}" title="Logo">
-	                	<img src="{{ Helper::showImage($settingArr['logo']) }}" alt="Logo">	                   
-	                </a>
-	            </div>
-	            <?php 
-				$bannerArr = DB::table('banner')->where(['object_id' => 4, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
-				?>	           
-	            <div class="banner_adv" id="Banner_tet" style="display: block;">
-
-				@foreach($bannerArr as $banner)
-
-	                @if($banner->ads_url !='')
-					<a href="{{ $banner->ads_url }}">
-					@endif
-	                    <img src="{{ Helper::showImage($banner->image_url) }}"></a>
-
-	                 @if($banner->ads_url !='')
-					</a>
-					@endif
-
-	            @endforeach
-	            </div>
-	        </div>
-	    </div>
-	</header><!-- /header -->
-
-	<nav id="mainNav" class="navbar navbar-default navbar-custom fix-header">
-        <div class="container" id="main-menu">
-        	<!-- Brand and toggle get grouped for better mobile display -->
-	        <div class="navbar-header">
-	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-	              <span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
-	            </button>
-			</div>
-
-			@include('frontend.partials.home-menu')
-        </div>
-	</nav><!-- /navigation -->
-
-	@yield('slider')
-	
-	@yield('search')
-
-	<section class="main" id="site-main">
-		<section class="container">
-			<section class="row">
-				
-				@yield('content')
-				@if(\Request::route()->getName() != "ky-gui" && \Request::route()->getName() != "ky-gui-thanh-cong")
-				<section class="col-sm-4 col-xs-12 block-sitebar">
-					@if(\Request::route()->getName() != "home" )
-					<article class="block block-box-search">
-						<div class="block-title">
-						<?php $type = isset($type) ? $type : 1 ; ?>
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" class="{{ (isset($type) && $type == 1) ? "active" : "" }}"><a href="javascript:void(0)" data-type="1" aria-controls="bdsb" role="tab" data-toggle="tab">BDS BÁN</a></li>
-    							<li role="presentation" class="{{ (isset($type) && $type == 2) ? "active" : "" }}"><a href="javascript:void(0)" data-type="2" aria-controls="bdsct" role="tab" data-toggle="tab">BDS CHO THUÊ</a></li>
-							</ul>
-						</div>
-						<div class="block-contents">
-						 	<!-- Tab panes -->
-							<div class="tab-content">
-								<div role="tabpanel" class="tab-pane active" id="bdsb">
-
-									<form action="{{ route('search') }}" method="GET" accept-charset="utf-8" class="search-content-input selectpicker-cus block-hover-selectpicker">
-								    	<input type="hidden" name="type" id="type" value="{{ isset($type) ? $type : 1 }}">
-								    	<div class="row-select">
-											<div class="form-group">
-												<select class="selectpicker form-control" data-live-search="true" name="estate_type_id" id="estate_type_id">
-													<option value="">Loại bất động sản</option>
-													@foreach($banList as $ban)
-													<option @if(isset($estate_type_id) && $estate_type_id == $ban->id) selected @endif class="option-lv1" value="{{ $ban->id }}">{{ $ban->name }}</option>
-													@endforeach
-												</select>
-											</div>											
-											<div class="form-group">
-												<select class="selectpicker form-control" data-live-search="true" id="district_id" name="district_id">
-													<option value="">Quận/Huyện</option>
-													@foreach($districtList as $district)
-													<option @if(isset($district_id) && $district_id == $district->id) selected @endif value="{{ $district->id }}">{{ $district->name }}</option>
-													@endforeach
-												</select>
-											</div>
-											<div class="form-group">
-												<select class="selectpicker form-control" id="ward_id" name="ward_id" data-live-search="true">
-													<option value="">Phường/Xã</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<select class="selectpicker form-control" id="street_id" name="street_id" data-live-search="true">
-													<option value="">Đường/Phố</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<select class="selectpicker form-control" data-live-search="true" id="project_id" name="project_id">
-													<option value="">Dự án</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<select class="selectpicker form-control" data-live-search="true" name="price_id" id="price_id">
-													<option value="">Mức giá</option>
-													@foreach($priceList as $price)
-													<option @if(isset($price_id) && $price_id == $price->id) selected @endif value="{{ $price->id }}">{{ $price->name }}</option>
-													@endforeach
-												</select>
-											</div>
-											<div class="form-group">
-												<select class="selectpicker form-control" id="area_id" name="area_id" data-live-search="true">
-													<option value="">Diện tích</option>
-													@foreach($areaList as $area)
-													<option @if(isset($area_id) && $area_id == $area->id) selected @endif value="{{ $area->id }}">{{ $area->name }}</option>
-													@endforeach
-												</select>
-											</div>
-											<div class="form-group">
-												<select class="selectpicker form-control" data-live-search="true" name="direction_id">
-													<option value="">Hướng nhà</option>
-													@foreach($directionList as $dir)
-													<option @if(isset($direction_id) && $direction_id == $dir->id) selected @endif value="{{ $dir->id }}">{{ $dir->name }}</option>
-													@endforeach
-												</select>
-											</div>
-											<div class="form-group">
-												<select class="selectpicker form-control" data-live-search="true" name="no_room">
-													<option value="">Số phòng ngủ</option>
-													<option @if(isset($no_room) && $no_room == 1) selected @endif value="1">1+</option>
-													<option @if(isset($no_room) && $no_room == 2) selected @endif value="2">2+</option>
-													<option @if(isset($no_room) && $no_room == 3) selected @endif value="3">3+</option>
-													<option @if(isset($no_room) && $no_room == 4) selected @endif value="4">4+</option>
-													<option @if(isset($no_room) && $no_room == 5) selected @endif value="5">5+</option>
-													<option @if(isset($no_room) && $no_room == 6) selected @endif value="6">6+</option>
-												</select>
-											</div>											
-											<div class="form-group">
-												<button type="submit" id="btnSearch" class="btn btn-success"><i class="fa fa-search"></i> Tìm Kiếm</button>
-											</div>
-										</div>
-							    	</form>
-								</div>								
-							</div>
-						</div>
-					</article><!-- /block-box-search -->	
-					@endif
-					<article class="block-sidebar block-news-sidebar">
-						<div class="block-title-common">
-							<h3><span class="icon-tile"><i class="fa fa-star"></i></span> Tin xem nhiều</h3>
-						</div>
-						<div class="block-contents">
-							<ul class="block-list-sidebar block-icon-title">
-								@foreach($tinRandom as $tin)
-		                      
-		                      <li><h4><a href="{{ route('news-detail', ['slug' => $tin['slug'], 'id' => $tin['id']]) }}" title="">{{ $tin['title'] }}</a></h4></li>
-		                     
-		                      @endforeach
-								
-							</ul>
-						</div>
-					</article><!-- /block-news-sidebar -->
-
-					<article class="block-sidebar block-news-sidebar">
-						<div class="block-title-common">
-							<h3><span class="icon-tile"><i class="fa fa-building-o"></i></span> Dự án nổi bật</h3>
-						</div>
-						<div class="block-contents block-contents2">
-							<ul class="block-list-sidebar block-slide-sidebar">
-								<div class="bxslider">
-								@if($landingList)
-									@foreach($landingList as $value)
-									<div class="large-item">
-		                                <a href="{{ route('detail-project', [$value->slug])}}" title=""><img src="{{ $value->image_url ? Helper::showImageThumb($value->image_url, 3, '306x194') : URL::asset('admin/dist/img/no-image.jpg') }}" alt="" /></a>
-		                                <h4><a href="{{ route('detail-project', [$value->slug])}}" title="">{{ $value->name }}</a></h4>
-		                                <p>{{ $value->address }}</p>
-		                            </div>
-		                            @endforeach
-		                        @endif
-								</div>
-								<div id="bx-pager" class="bx-thumbnail">
-									@if($landing2List)
-									@foreach($landing2List as $value)
-									<div class="item">
-										<div class="item-child">
-				                            <a data-slide-index="0" class="slide_title" onclick="location.href='{{ route('detail-project', [$value->slug])}}'" href="{{ route('detail-project', [$value->slug])}}" title=""><img class="avatar" src="{{ $value->image_url ? Helper::showImageThumb($value->image_url, 3, '306x194') : URL::asset('admin/dist/img/no-image.jpg') }}" alt="" /></a>
-				                            <div class="slide_info">
-				                                <a  onclick="location.href='{{ route('detail-project', [$value->slug])}}'" href="{{ route('detail-project', [$value->slug])}}" title="">{{ $value->name }}</a>
-				                                <p>{{ $value->address }}</p>
-				                            </div>
-			                            </div>
-			                        </div>
-			                        @endforeach
-			                        @endif			                       
-			                        
-								</div>
-							</ul>
-						</div>
-					</article><!-- /block-news-sidebar -->
-
-					<article class="block-sidebar block-news-sidebar">
-						<div class="block-title-common">
-							<h3><span class="icon-tile"><i class="fa fa-th-list"></i></span> Liên kết nổi bật</h3>
-						</div>
-						<div class="block-contents">
-							<ul class="block-list-sidebar block-icon1-title">
-								@foreach($customLink as $link)
-								<li><h4><a href="{{ $link->link_url }}" title="{{ $link->link_text }}">{{ $link->link_text }}</a></h4></li>
-								@endforeach
-							</ul>							
-						</div>
-					</article><!-- /block-news-sidebar -->
-				</section><!-- /block-site-right -->
-				@endif
+				<div class="col-sm-9 col-xs-12 info">
+					<div class="newsection_text">
+						<h1>CÔNG TY TNHH SẢN XUẤT - THƯƠNG MẠI HÒA HỢP PHÁT</h1>
+						<p>Chuyên sản xuất giấy tấm, thủng carton, thùng hộp Offset, in ấn gia công các loại ...</p>
+						<p><b>Khu KDC Thuận Giao, Kp. Bình Thuận 2, Thuận Giao, Thuận An, Bình Dương</b></p>
+						<p><b>Tel: (0650) 3721230 - Fax: (0650) 3721231 - MST: 3702410080</b></p>
+					</div>
+				</div>
 			</section>
-		</section>
-		<section class="block block-get-news">
-			<div class="container">
-				<div class="block-contents">
-					<form action="" method="get" >
-						<input type="text" name="" value="" placeholder="Nhập địa chỉ email">
-						<button type="button" class="btnConfirm">Đăng ký</button>
-					</form>
+		</header><!-- /header -->
+
+		<nav id="mainNav" class="navbar navbar-default navbar-custom">
+			<div class="container" id="main-menu">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
+					</button>
 				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse menu" id="bs-example-navbar-collapse-1">
+					<div class="text-center logo-menu-res">
+						<a title="Logo" href="index.html"><img src="images/logo.jpg" alt="Logo"></a>
+					</div>
+					<ul class="nav navbar-nav navbar-left">
+						<li class="level0">
+							<a href="{{ route('home') }}" title="Trang Chủ">Trang Chủ</a>
+						</li><!-- END MENU HOME -->
+						<li class="level0">
+							<a href="gioi-thieu.html" title="Giới Thiệu">Giới Thiệu</a>
+						</li><!-- END MENU HOME -->
+						<li class="level0 parent">
+							<a href="san-pham.html" title="Sản Phẩm">Sản Phẩm</a>
+							<ul class="level0 submenu submenu-white">
+								@foreach($loaiSpList as $loaiSp)
+								<li class="level1 @if($cateList[$loaiSp->id]->count() > 0) parent @endif">
+									<a href="{{ route('danh-muc', $loaiSp->slug) }}" title="{!! $loaiSp->name !!}">{!! $loaiSp->name !!}</a>
+									<ul class="level1 submenu submenu-white">
+										@if($cateList[$loaiSp->id]->count() > 0)
+										@foreach($cateList[$loaiSp->id] as $cate)
+										<li><a href="{{ route('danh-muc-con', [$loaiSp->slug, $cate->slug])}}" title="{!! $cate->name !!}">{!! $cate->name !!}</a></li>
+										@endforeach
+										@endif
+									</ul>
+								</li>
+								@endforeach
+							</ul>
+						</li><!-- END MENU HOME -->
+						<li class="level0">
+							<a href="ho-so-cong-ty.html" title="Hồ Sơ Công Ty">Hồ Sơ Công Ty</a>
+						</li><!-- END MENU HOME -->
+						<li class="level0">
+							<a href="lien-he.html" title="Liên Hệ">Liên Hệ</a>
+						</li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
 			</div>
-		</section><!-- /block-get-news -->
-	</section><!-- /main -->
+		</nav><!-- /mainNav -->
 
-	
+	 	@yield('slider')
 
-	@include('frontend.home.footer')
-	
-	@include('frontend.partials.ads')	
-	
+        @yield('gioi_thieu')
+
+		<section class="block-2-col clearfix">
+			@include('frontend.home.sidebar')
+
+			@yield('content')
+		</section><!-- /block-2-col -->
+
+		<footer id="footer">
+			<div class="footer-main">
+				<address class="block-address">
+					<p style="font-size: 16px; color: #006699; text-transform: uppercase;">CÔNG TY TNHH SẢN XUẤT - THƯƠNG MẠI HÒA HỢP PHÁT</p>
+					<p><strong>Địa chỉ:</strong> Khu KDC Thuận Giao, Kp. Bình Thuận 2, Thuận Giao, Thuận An, Bình Dương</p>
+					<p>
+						<strong>Điên thoại:</strong> (0650) 3721230 - <strong>Fax:</strong>(0650) 3721231
+					</p>
+					<p>
+						<strong>Email:</strong> <a href="mailto:baobigiay.hoahopphatbd@gmail.com?subject=feedback" class="link"> baobigiay.hoahopphatbd@gmail.com</a> - 
+						<strong>Website:</strong><a href="#" title="" class="link">http://truongdeptrai.com</a>
+					</p>
+				</address>
+			</div>
+		</footer>
+
+	</div><!-- /main -->
 
 	<a id="return-to-top" class="td-scroll-up" href="javascript:void(0)">
   		<i class="fa fa-angle-up" aria-hidden="true"></i>
 	</a>
-	<!-- RETURN TO TOP -->
+	<!-- Return To Top -->
+
 
 	<!-- ===== JS ===== -->
 	<script src="{{ URL::asset('assets/js/jquery.min.js') }}"></script>
 	<!-- JS Bootstrap -->
 	<script src="{{ URL::asset('assets/vendor/bootstrap/bootstrap.min.js') }}"></script>
+	<!-- JS Semantic UI -->
+	<script src="{{ URL::asset('assets/vendor/semantic-ui/semantic.min.js') }}"></script>
+	<!-- JS Nivo Slider -->
+	<script src="{{ URL::asset('assets/vendor/nivo-slider/jquery.nivo.slider.js') }}"></script>
+	<script src="{{ URL::asset('assets/vendor/nivo-slider/jquery.nivo.slider.pack.js') }}"></script>
 	<!-- ===== JS Bxslider ===== -->
 	<script src="{{ URL::asset('assets/vendor/bxslider/jquery.bxslider.min.js') }}"></script>
-	<!-- ===== JS Bxslider ===== -->
-	<script src="{{ URL::asset('assets/vendor/owl-carousel/owl.carousel.min.js') }}"></script>
 	<!-- JS Sticky -->
 	<script src="{{ URL::asset('assets/vendor/sticky/jquery.sticky.js') }}"></script>
-	<!-- ===== JS Bootstrap Select ===== -->
-	<script src="{{ URL::asset('assets/vendor/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
 	<!-- Js Common -->
-	<script src="{{ URL::asset('admin/dist/js/sweetalert2.min.js') }}"></script>
 	<script src="{{ URL::asset('assets/js/common.js') }}"></script>
-	@yield('javascript_page')
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$.ajaxSetup({
-		        headers: {
-		          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		        }
-		    });
-		    @if(isset($district_id) && $district_id > 0)
-		    var district_id = {{ $district_id }};
-		    $('#district_id').val(district_id);
-		    $.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'ward',
-						col : 'district_id',
-						id : district_id
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#ward_id').html(data).selectpicker('refresh');
-						@if(isset($ward_id) && $ward_id > 0)
-						$('#ward_id').val({{ $ward_id }}).selectpicker('refresh');
-						@endif
-					}
-				});
 
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'street',
-						col : 'district_id',
-						id : district_id
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#street_id').html(data).selectpicker('refresh');
-						@if(isset($street_id) && $street_id > 0)
-						$('#street_id').val({{ $street_id }}).selectpicker('refresh');
-						@endif
-					}
-				});
+	<script type="text/javascript"> 
+	$(window).on('load', function() {
+	    $('#slider').nivoSlider({
+	    	theme: 'dark',
+	    	effect: 'random',                 // Specify sets like: 'fold,fade,sliceDown' 
+		    slices: 15,                       // For slice animations 
+		    boxCols: 8,                       // For box animations 
+		    boxRows: 4,                       // For box animations 
+		    animSpeed: 500,                   // Slide transition speed 
+		    pauseTime: 3000,                  // How long each slide will show 
+		    startSlide: 0,                    // Set starting Slide (0 index) 
+		    directionNav: true,               // Next & Prev navigation 
+		    controlNav: 'bullets',                 // 1,2,3... navigation 
+		    controlNavThumbs: false,          // Use thumbnails for Control Nav 
+		    pauseOnHover: true,               // Stop animation while hovering 
+		    manualAdvance: true,             // Force manual transitions 
+		    prevText: 'Prev',                 // Prev directionNav text 
+		    nextText: 'Next',                 // Next directionNav text
+	    }); 
+	}); 
+	$(".bxslider").bxSlider({
+		auto: true,
+		pause: 3000,
+		autoHover: true,
+        pagerCustom: '.bx-thumbnail',
+        controls: false,
+        // adaptiveHeight: true,
+        nextText: '<i class="icofont icofont-rounded-right"></i>',
+        prevText: '<i class="icofont icofont-rounded-left"></i>'
+    });
 
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'project',
-						col : 'district_id',
-						id : district_id
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#project_id').html(data).selectpicker('refresh');
-						@if(isset($project_id) && $project_id > 0)
-						$('#project_id').val({{ $project_id }}).selectpicker('refresh');
-						@endif
-					}
-				});
-		    @endif
-		    $('.bxslider').bxSlider({
-				pagerCustom: '#bx-pager',
-				pager: true,
-				auto: true,
-				pause: 4000
-			});
-			$('#district_id').change(function(){
-				var district_id = $(this).val();
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'ward',
-						col : 'district_id',
-						id : district_id
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#ward_id').html(data).selectpicker('refresh');
-					}
-				});
-
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'street',
-						col : 'district_id',
-						id : district_id
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#street_id').html(data).selectpicker('refresh');
-					}
-				});
-
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'project',
-						col : 'district_id',
-						id : district_id
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#project_id').html(data).selectpicker('refresh');
-					}
-				});
-			});
-
-
-
-			$('.block-box-search li a').click(function(){
-				obj = $(this);
-				var type = obj.data('type');
-				$('#type').val(type);
-				$('.block-box-search li').removeClass('active');
-				obj.parents('li').addClass('active');
-
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'estate_type',
-						col : 'type',
-						id : type
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#estate_type_id').html(data).selectpicker('refresh');
-						@if(isset($estate_type_id) && $estate_type_id > 0)
-						$('#estate_type_id').val({{ $estate_type_id }}).selectpicker('refresh');
-						@endif
-					}
-				});
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'price',
-						col : 'type',
-						id : type
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#price_id').html(data).selectpicker('refresh');
-						@if(isset($price_id) && $price_id > 0)
-						$('#price_id').val({{ $price_id }}).selectpicker('refresh');
-						@endif
-					}
-				});
-			});
-			@if(isset($type) && $type >0)
-				var type = {{ $type }};
-				$('#type').val({{ $type }});
-				$('.block-box-search li').removeClass('active');
-				$('.block-box-search li a[data-type={{$type}}]').parents('li').addClass('active');
-
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'estate_type',
-						col : 'type',
-						id : type
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#estate_type_id').html(data).selectpicker('refresh');
-						@if(isset($estate_type_id) && $estate_type_id > 0)
-						$('#estate_type_id').val({{ $estate_type_id }}).selectpicker('refresh');
-						@endif
-					}
-				});
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'price',
-						col : 'type',
-						id : type
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#price_id').html(data).selectpicker('refresh');
-						@if(isset($price_id) && $price_id > 0)
-						$('#price_id').val({{ $price_id }}).selectpicker('refresh');
-						@endif
-					}
-				});
-			@endif
-		});
-		
+    $(".bx-thumbnail").bxSlider({
+        slideMargin: 7,
+        maxSlides: 3,
+        pager: false,
+        controls: false,
+        slideWidth: 71,
+        infiniteLoop: false
+    });
 	</script>
 
 </body>

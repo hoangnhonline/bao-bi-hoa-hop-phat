@@ -11,7 +11,7 @@ use App\Models\District;
 use App\Models\Ward;
 use App\Models\Street;
 use App\Models\Project;
-use App\Models\EstateType;
+use App\Models\LoaiSp;
 use App\Models\MetaData;
 use App\Models\ProductImg;
 use App\Models\Tag;
@@ -43,11 +43,11 @@ class DetailController extends Controller
     {   
         $spThuocTinhArr = $productArr = [];
         $slug = $request->slug;
-        $detail = Product::where('slug', $slug)->where('loai_sp_id', '>', 0)->first();
+        $detail = Product::where('slug', $slug)->where('loai_id', '>', 0)->first();
         if(!$detail){
             return redirect()->route('home');
         }
-        $rsLoai = EstateType::find( $detail->loai_sp_id );
+        $rsLoai = LoaiSp::find( $detail->loai_id );
 
         $hinhArr = ProductImg::where('product_id', $detail->id)->get()->toArray();
 
@@ -69,7 +69,7 @@ class DetailController extends Controller
                     ->where('product.type', $detail->type)
                     ->where('product.district_id', $detail->district_id)
                     ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')            
-                    ->join('loai_sp', 'loai_sp.id', '=','product.loai_sp_id')      
+                    ->join('loai_sp', 'loai_sp.id', '=','product.loai_id')      
                     ->select('product_img.image_url as image_urls', 'product.*', 'loai_sp.slug as slug_loai')
                     ->where('product_img.image_url', '<>', '')    
                     ->where('product.id', '<>', $detail->id)                                     
@@ -78,7 +78,7 @@ class DetailController extends Controller
 
         $tagSelected = Product::getListTag($detail->id); 
         $type = $detail->type;
-        $loai_sp_id = $detail->loai_sp_id;
+        $loai_id = $detail->loai_id;
         $street_id = $detail->street_id;
         $ward_id = $detail->ward_id;
         $district_id = $detail->district_id;
@@ -90,7 +90,7 @@ class DetailController extends Controller
         $tienIch = Product::productTienIchName($detail->id);
         return view('frontend.detail.index', compact('detail', 'rsLoai', 'hinhArr', 'productArr', 'seo', 'socialImage', 'otherList', 'tagSelected',
             'type',
-            'loai_sp_id',
+            'loai_id',
             'street_id',
             'ward_id',
             'district_id',
@@ -115,7 +115,7 @@ class DetailController extends Controller
             if(!empty($listId)){
             $query = Product::where('product.status', 1)            
                 ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id') 
-                ->join('loai_sp', 'loai_sp.id', '=','product.loai_sp_id')
+                ->join('loai_sp', 'loai_sp.id', '=','product.loai_id')
                 ->select('product_img.image_url as image_urls', 'product.*', 'loai_sp.slug as slug_loai')
                 ->where('product_img.image_url', '<>', '')
                 ->whereIn('product.id', $listId)
@@ -177,12 +177,12 @@ class DetailController extends Controller
     {
         $tagArr = Tag::where('type', 1)->get();
         $directionArr = Direction::all();
-        $loai_sp_id = $request->loai_sp_id ? $request->loai_sp_id : null;
+        $loai_id = $request->loai_id ? $request->loai_id : null;
         $type = $request->type ? $request->type : 1;    
         
         if( $type ){
             
-            $estateTypeArr = EstateType::where('type', $type)->select('id', 'name')->orderBy('display_order', 'desc')->get();            
+            $estateTypeArr = LoaiSp::where('type', $type)->select('id', 'name')->orderBy('display_order', 'desc')->get();            
             
         }       
         $priceUnitList = PriceUnit::all();
@@ -195,14 +195,14 @@ class DetailController extends Controller
 
         $tienIchLists = Tag::where(['type' => 3, 'district_id' => $district_id])->get();
         $seo['title'] = $seo['description'] = $seo['keywords'] = "Đăng tin ký gửi";
-        return view('frontend.ky-gui.index', compact('estateTypeArr',   'loai_sp_id', 'type', 'district_id', 'districtList', 'wardList', 'streetList', 'projectList', 'priceUnitList', 'tagArr', 'tienIchLists', 'directionArr', 'seo'));
+        return view('frontend.ky-gui.index', compact('estateTypeArr',   'loai_id', 'type', 'district_id', 'districtList', 'wardList', 'streetList', 'projectList', 'priceUnitList', 'tagArr', 'tienIchLists', 'directionArr', 'seo'));
     }
     public function postKygui(Request $request){
         $dataArr = $request->all();        
         
         $this->validate($request,[
             'type' => 'required',
-            'loai_sp_id' => 'required',
+            'loai_id' => 'required',
             'district_id' => 'required',
             'ward_id' => 'required',
             'street_id' => 'required',
@@ -215,7 +215,7 @@ class DetailController extends Controller
             'contact_mobile' => 'required'
         ],
         [            
-            'loai_sp_id.required' => 'Bạn chưa chọn loại bất động sản',
+            'loai_id.required' => 'Bạn chưa chọn loại bất động sản',
             'district_id.required' => 'Bạn chưa chọn quận',
             'ward_id.required' => 'Bạn chưa chọn phường',
             'street_id.required' => 'Bạn chưa chọn đường phố',

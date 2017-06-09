@@ -67,7 +67,7 @@ class ProductController extends Controller
 
         $query->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id'); 
         $query->join('loai_sp', 'product.loai_id', '=','loai_sp.id');
-        $query->join('cate', 'product.cate_id', '=','cate.id'); 
+        $query->leftJoin('cate', 'product.cate_id', '=','cate.id'); 
         if($is_hot == 1){
             $query->orderBy('product.display_order', 'asc'); 
         }        
@@ -135,16 +135,12 @@ class ProductController extends Controller
         $this->validate($request,[            
             'loai_id' => 'required',            
             'name' => 'required',
-            'slug' => 'required',
-            'price' => 'required',
-            'price_5' => 'required'
+            'slug' => 'required'            
         ],
         [            
             'loai_id.required' => 'Bạn chưa chọn danh mục cha',           
             'name.required' => 'Bạn chưa nhập tên sản phẩm',
-            'slug.required' => 'Bạn chưa nhập slug',
-            'price.required' => 'Bạn chưa nhập giá bán lẻ',
-            'price_5.required' => 'Bạn chưa nhập giá sỉ'          
+            'slug.required' => 'Bạn chưa nhập slug'           
         ]);
            
         $dataArr['slug'] = str_replace(".", "-", $dataArr['slug']);
@@ -245,9 +241,9 @@ class ProductController extends Controller
                         //var_dump(config('icho.upload_path').$image_url, config('icho.upload_path').$destionation);die;
                         File::move(config('icho.upload_path').$image_url, config('icho.upload_path').$destionation);
 
-                        Image::make(config('icho.upload_path').$destionation)->resize(170, null, function ($constraint) {
+                        Image::make(config('icho.upload_path').$destionation)->resize(106, null, function ($constraint) {
                                 $constraint->aspectRatio();
-                        })->crop(170, 128)->save(config('icho.upload_thumbs_path').$destionation);
+                        })->crop(106, 80)->save(config('icho.upload_thumbs_path').$destionation);
 
                         $imageArr['name'][] = $destionation;
 
@@ -317,16 +313,12 @@ class ProductController extends Controller
         $this->validate($request,[            
             'loai_id' => 'required',            
             'name' => 'required',
-            'slug' => 'required',
-            'price' => 'required',
-            'price_5' => 'required'
+            'slug' => 'required'            
         ],
         [            
             'loai_id.required' => 'Bạn chưa chọn danh mục cha',           
             'name.required' => 'Bạn chưa nhập tên sản phẩm',
-            'slug.required' => 'Bạn chưa nhập slug',
-            'price.required' => 'Bạn chưa nhập giá bán lẻ',
-            'price_5.required' => 'Bạn chưa nhập giá sỉ'           
+            'slug.required' => 'Bạn chưa nhập slug'                  
         ]);
            
         $dataArr['slug'] = str_replace(".", "-", $dataArr['slug']);

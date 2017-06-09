@@ -5,9 +5,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\EstateType;
+use App\Models\LoaiSp;
 use App\Models\Cate;
-use App\Models\SanPham;
+use App\Models\Product;
 use App\Models\SpThuocTinh;
 use App\Models\SpHinh;
 use App\Models\ThuocTinh;
@@ -42,7 +42,7 @@ class OrderController extends Controller
       $orderDetail = $order->order_detail;      
     }
     foreach($orderDetail as $detail){
-      $detailArr[$detail->sp_id] = SanPham::find($detail->sp_id);
+      $detailArr[$detail->sp_id] = Product::find($detail->sp_id);
     }
     $str_order_id = str_pad($order->id, 6, "0", STR_PAD_LEFT);
      $seo['title'] = $seo['description'] = $seo['keywords'] = "Chi tiết đơn hàng #".$str_order_id;

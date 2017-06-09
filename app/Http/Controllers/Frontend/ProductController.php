@@ -11,7 +11,7 @@ use App\Models\District;
 use App\Models\Ward;
 use App\Models\Street;
 use App\Models\Project;
-use App\Models\EstateType;
+use App\Models\LoaiSp;
 use App\Models\MetaData;
 use App\Models\Pages;
 use Helper, File, Session, Auth;
@@ -21,31 +21,42 @@ class ProductController extends Controller
 {
     public function cate(Request $request)
     {
-         $productArr = [];
         $slug = $request->slug;
-        $rs = EstateType::where('slug', $slug)->first();        
-        if($rs){//danh muc cha
-            $loai_sp_id = $rs->id;
+        if($slug == 'san-pham'){
+            $rs = (object) [];
+            $rs->name = 'Sản phẩm';
             
-            $query = Product::where('loai_sp_id', $loai_sp_id)               
+            $query = Product::where('product.status', 1)
+                ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id') 
+                ->join('loai_sp', 'loai_sp.id', '=','product.loai_id')                
+                ->select('product_img.image_url as image_url', 'product.*', 'loai_sp.slug as slug_loai') 
+                ->orderBy('product.id', 'desc');
+                $productList  = $query->limit(36)->get();              
+            
+            
+            $seo['title'] = $seo['description'] = $seo['keywords'] = $rs->name;
+                                                              
+            return view('frontend.cate.parent', compact('productList', 'rs', 'socialImage', 'seo', 'loai_id'));
+        }
+        $rs = LoaiSp::where('slug', $slug)->first();        
+
+        if($rs){//danh muc cha
+            $loai_id = $rs->id;
+            
+            $query = Product::where('loai_id', $loai_id)               
                 ->where('product.status', 1)
                 ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id') 
-                ->join('loai_sp', 'loai_sp.id', '=','product.loai_sp_id')                
-                ->select('product_img.image_url as image_urls', 'product.*', 'loai_sp.slug as slug_loai')              
-                ->where('product_img.image_url', '<>', '')
-                ->orderBy('product.is_hot', 'desc')
-                ->orderBy('product.cart_status', 'asc')
+                ->join('loai_sp', 'loai_sp.id', '=','product.loai_id')                
+                ->select('product_img.image_url as image_url', 'product.*', 'loai_sp.slug as slug_loai') 
                 ->orderBy('product.id', 'desc');
-                $productList  = $query->limit(36)->get();
-                $productArr = $productList->toArray();
+                $productList  = $query->limit(36)->get();              
             
             if( $rs->meta_id > 0){
                $seo = MetaData::find( $rs->meta_id )->toArray();
             }else{
                 $seo['title'] = $seo['description'] = $seo['keywords'] = $rs->name;
-            }            
-            $type = $rs->type;                                     
-            return view('frontend.cate.parent', compact('productList','productArr', 'rs', 'hoverInfo', 'socialImage', 'seo', 'type', 'loai_sp_id'));
+            }                                                   
+            return view('frontend.cate.parent', compact('productList', 'rs', 'socialImage', 'seo', 'loai_id'));
         }else{
             $detailPage = Pages::where('slug', $slug)->first();
             if(!$detailPage){
@@ -64,7 +75,7 @@ class ProductController extends Controller
         $query = Product::where('product.type', 1);
         
             $query->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id') 
-            ->join('loai_sp', 'loai_sp.id', '=','product.loai_sp_id')                
+            ->join('loai_sp', 'loai_sp.id', '=','product.loai_id')                
             ->select('product_img.image_url as image_urls', 'product.*', 'loai_sp.slug as slug_loai')              
             ->where('product_img.image_url', '<>', '')
             ->orderBy('product.is_hot', 'desc')
@@ -86,7 +97,7 @@ class ProductController extends Controller
         $query = Product::where('product.type', 2);
         
         $query->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id') 
-        ->join('loai_sp', 'loai_sp.id', '=','product.loai_sp_id')                
+        ->join('loai_sp', 'loai_sp.id', '=','product.loai_id')                
         ->select('product_img.image_url as image_urls', 'product.*', 'loai_sp.slug as slug_loai')              
         ->where('product_img.image_url', '<>', '')
         ->orderBy('product.is_hot', 'desc')
@@ -105,7 +116,7 @@ class ProductController extends Controller
     {
         $productArr = [];
        
-            $loai_sp_id = $request->loai_sp_id;
+            $loai_id = $request->loai_id;
             $type = $request->type;
             $district_id = $request->district_id;
             $ward_id = $request->ward_id;
@@ -116,7 +127,7 @@ class ProductController extends Controller
             $no_room = $request->no_room;
             $direction_id = $request->direction_id;
 
-            $query = Product::where('loai_sp_id', $loai_sp_id);
+            $query = Product::where('loai_id', $loai_id);
             if($district_id){
                 $query->where('district_id', $district_id);
             }
@@ -139,7 +150,7 @@ class ProductController extends Controller
                 $query->where('direction_id', $direction_id);
             }
                 $query->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id') 
-                ->join('loai_sp', 'loai_sp.id', '=','product.loai_sp_id')                
+                ->join('loai_sp', 'loai_sp.id', '=','product.loai_id')                
                 ->select('product_img.image_url as image_urls', 'product.*', 'loai_sp.slug as slug_loai')              
                 ->where('product_img.image_url', '<>', '')
                 ->orderBy('product.is_hot', 'desc')
@@ -153,7 +164,7 @@ class ProductController extends Controller
             
             return view('frontend.cate.search', compact('productList','productArr', 'socialImage', 'seo',
             'type',
-            'loai_sp_id',
+            'loai_id',
             'street_id',
             'ward_id',
             'district_id',

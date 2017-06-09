@@ -58,7 +58,7 @@
               <label class="radio-inline"><input type="radio" {{ $arrSearch['status'] == 1 ? "checked" : "" }} name="status" value="1">Hiện</label>
               <label class="radio-inline"><input type="radio" {{ $arrSearch['status'] == 0 ? "checked" : "" }} name="status" value="0">Ẩn</label>              
             </div>-->
-            <div class="form-group">
+            <!--<div class="form-group">
               <label><input type="checkbox" name="is_hot" value="1" {{ $arrSearch['is_hot'] == 1 ? "checked" : "" }}> HOT</label>              
             </div>
             <div class="form-group">
@@ -66,7 +66,7 @@
             </div>
             <div class="form-group">
               <label><input type="checkbox" name="in_stock" value="1" {{ $arrSearch['in_stock'] == 1 ? "checked" : "" }}> Hết hàng</label>              
-            </div>                      
+            </div>                      -->
             <button type="submit" style="margin-top:-5px" class="btn btn-primary btn-sm">Lọc</button>
           </form>         
         </div>
@@ -115,12 +115,6 @@
                   @endif<br />
                   <strong style="color:#337ab7;font-style:italic"> {{ $item->ten_loai }} / {{ $item->ten_cate }}</strong>
                  <p style="margin-top:10px">
-                    
-                    <b style="color:red">                  
-                    {{ number_format($item->price) }}
-                    </b> [ <b style="color:orange">                  
-                    {{ number_format($item->price_5) }}
-                    </b> ]
                     
                   </p>
                   

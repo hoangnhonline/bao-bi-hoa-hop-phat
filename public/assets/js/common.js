@@ -45,6 +45,17 @@
         $('.menu ul li.parent').append('<span class="carret-down"></span>');
     });
 
+    /** Menu, Menu Mega Responsive **/
+      if ($(window).width() < 992) {
+        $(document).ready(function(){
+          $('.menu ul li.parent').append('<span class="plus"></span>');
+          $('.menu ul li.parent .plus').click(function(){
+            $(this).parent().toggleClass('open');
+            $(this).toggleClass('open').siblings('.submenu').slideToggle();
+          });
+        });
+      }
+
     /*  [ Sticky Menu ] */
     // $('.fix-header ').sticky({ topSpacing: 0 });
 

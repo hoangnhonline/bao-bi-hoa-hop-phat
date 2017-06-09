@@ -5,9 +5,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\EstateType;
+use App\Models\LoaiSp;
 use App\Models\Cate;
-use App\Models\SanPham;
+use App\Models\Product;
 use App\Models\SpThuocTinh;
 use App\Models\SpHinh;
 use App\Models\ThuocTinh;
@@ -53,7 +53,7 @@ class CartController extends Controller
 
         $getlistProduct = Session::get('products');
         $listProductId = array_keys($getlistProduct);
-        $arrProductInfo = SanPham::whereIn('product.id', $listProductId)
+        $arrProductInfo = Product::whereIn('product.id', $listProductId)
                             ->leftJoin('sp_hinh', 'sp_hinh.id', '=','product.thumbnail_id')
                             ->select('sp_hinh.image_url', 'product.*')->get();
         $seo['title'] = $seo['description'] = $seo['keywords'] = "Giỏ hàng";
@@ -137,7 +137,7 @@ class CartController extends Controller
             }
         }
         */
-        $arrProductInfo = SanPham::whereIn('product.id', $listProductId)
+        $arrProductInfo = Product::whereIn('product.id', $listProductId)
                             ->leftJoin('sp_hinh', 'sp_hinh.id', '=','product.thumbnail_id')
                             ->select('sp_hinh.image_url', 'product.*')->get();
 
@@ -157,7 +157,7 @@ class CartController extends Controller
         }
 
         $listProductId = $getlistProduct ? array_keys($getlistProduct) : [];
-        $arrProductInfo = SanPham::whereIn('product.id', $listProductId)
+        $arrProductInfo = Product::whereIn('product.id', $listProductId)
                             ->leftJoin('sp_hinh', 'sp_hinh.id', '=','product.thumbnail_id')
                             ->select('sp_hinh.image_url', 'product.*')->get();
         $listCity = City::orderBy('display_order')->get();
@@ -239,7 +239,7 @@ class CartController extends Controller
 
         $listProductId = array_keys($getlistProduct);
 
-        $arrProductInfo = SanPham::whereIn('product.id', $listProductId)
+        $arrProductInfo = Product::whereIn('product.id', $listProductId)
                             ->leftJoin('sp_hinh', 'sp_hinh.id', '=','product.thumbnail_id')
                             ->select('sp_hinh.image_url', 'product.*')->get();
         $totalCanNang = 0;
@@ -286,7 +286,7 @@ class CartController extends Controller
         
 
         $vangLaiArr = Session::get('vanglai');
-        $arrProductInfo = SanPham::whereIn('product.id', $listProductId)
+        $arrProductInfo = Product::whereIn('product.id', $listProductId)
                             ->leftJoin('sp_hinh', 'sp_hinh.id', '=','product.thumbnail_id')
                             ->select('sp_hinh.image_url', 'product.*')->get();
         $order['tong_tien'] = 0;
@@ -365,7 +365,7 @@ class CartController extends Controller
                 }                
 
             }else{
-                $tmpModelProduct = SanPham::find($product->id);
+                $tmpModelProduct = Product::find($product->id);
                 $tmpSL = $tmpModelProduct->so_luong_tam > 0 ? $tmpModelProduct->so_luong_tam - 1 : 0;
                 $tmpModelProduct->update(['so_luong_tam' => $tmpSL]);
             }

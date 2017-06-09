@@ -86,38 +86,6 @@
                           <label>Slug <span class="red-star">*</span></label>                  
                           <input type="text" class="form-control" name="slug" id="slug" value="{{ old('slug', $detail->slug) }}">
                         </div>
-                       
-                        <div class="col-md-4 none-padding">
-                          <div class="checkbox">
-                              <label><input type="checkbox" name="is_hot" value="1" {{ $detail->is_hot == 1 ? "checked" : "" }}> Sản phẩm HOT </label>
-                          </div>                          
-                        </div>
-                        <div class="col-md-4 none-padding pleft-5">
-                            <div class="checkbox">
-                              <label><input type="checkbox" name="is_sale" value="1" {{ $detail->is_sale == 1 ? "checked" : "" }}> Sản phẩm sale </label>
-                          </div>
-                        </div>
-                        <div class="col-md-4 none-padding pleft-5">
-                            <div class="checkbox">
-                              <label><input type="checkbox" name="in_stock" value="0" {{ $detail->in_stock == 0 ? "checked" : "" }}> HẾT HÀNG </label>
-                          </div>
-                        </div>
-                        <div class="form-group" >                  
-                            <label>Giá bán lẻ<span class="red-star">*</span></label>
-                            <input type="text" class="form-control" name="price" id="price" value="{{ old('price') ? old('price') : $detail->price}}">
-                        </div>
-                        <div class="form-group" >                  
-                            <label>Giá sỉ<span class="red-star">*</span></label>
-                            <input type="text" class="form-control" name="price_5" id="price_5" value="{{ old('price_5', $detail->price_5) }}">
-                        </div>
-                        <div class="form-group" >                  
-                            <label>Bảo hành</label>
-                            <input type="text" class="form-control" name="guarantee" id="guarantee" value="{{ old('guarantee', $detail->guarantee) }}">
-                        </div>
-                        <div class="form-group" >                  
-                            <label>URL Video</label>
-                            <input type="text" class="form-control" name="video_url" id="video_url" value="{{ old('video_url', $detail->video_url) }}">
-                        </div>
                         <div class="form-group">
                             <label>Mô tả ngắn</label>
                             <textarea class="form-control" rows="4" name="description" id="description">{{ old('description', $detail->description) }}</textarea>

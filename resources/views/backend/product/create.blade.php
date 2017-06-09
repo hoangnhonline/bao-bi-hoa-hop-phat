@@ -76,7 +76,7 @@
                           <label>Slug <span class="red-star">*</span></label>                  
                           <input type="text" class="form-control" name="slug" id="slug" value="{{ old('slug') }}">
                         </div>
-                        
+                        <!--
                         <div class="col-md-4 none-padding">
                           <div class="checkbox">
                               <label><input type="checkbox" name="is_hot" value="1"> Sản phẩm HOT </label>
@@ -93,7 +93,7 @@
                           </div>
                         </div>
                         <div class="form-group" >                  
-                            <label>Giá bán lẻ<span class="red-star">*</span></label>
+                            <label>Giá</label>
                             <input type="text" class="form-control" name="price" id="price" value="{{ old('price') }}">
                         </div>                                             
                         <div class="form-group" >                  
@@ -107,7 +107,7 @@
                         <div class="form-group" >                  
                             <label>URL Video</label>
                             <input type="text" class="form-control" name="video_url" id="video_url" value="{{ old('video_url') }}">
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <label>Mô tả ngắn</label>
                             <textarea class="form-control" rows="4" name="description" id="description">{{ old('description') }}</textarea>

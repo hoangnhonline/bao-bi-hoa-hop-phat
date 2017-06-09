@@ -5,9 +5,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\EstateType;
+use App\Models\LoaiSp;
 use App\Models\Cate;
-use App\Models\SanPham;
+use App\Models\Product;
 use App\Models\SpThuocTinh;
 use App\Models\SpHinh;
 use App\Models\ThuocTinh;
@@ -42,7 +42,7 @@ class CompareController extends Controller
         $str_id = $request->id;
         if( $str_id ){
             $tmpArr = explode("-", $str_id);
-            $productTmpArr = SanPham::whereIn('product.id', $tmpArr)
+            $productTmpArr = Product::whereIn('product.id', $tmpArr)
                 ->leftJoin('sp_hinh', 'sp_hinh.id', '=','product.thumbnail_id')
                 ->select('product.id as sp_id', 'name', 'name_extend', 'slug', 'price', 'price_sale', 'sp_hinh.image_url')->get();                
         
@@ -55,12 +55,12 @@ class CompareController extends Controller
                 if( $tmp ){
                     $spThuocTinhArr[$sp_id] = json_decode( $tmp->thuoc_tinh, true);
                 }
-                $tmpDetail = SanPham::find( $sp_id );
-                $loai_sp_id = $tmpDetail->loai_sp_id;
+                $tmpDetail = Product::find( $sp_id );
+                $loai_id = $tmpDetail->loai_id;
             }
         }        
         
-        $loaiThuocTinhArr = LoaiThuocTinh::where('loai_sp_id', $loai_sp_id)->orderBy('display_order')->get();        
+        $loaiThuocTinhArr = LoaiThuocTinh::where('loai_id', $loai_id)->orderBy('display_order')->get();        
 
         if( $loaiThuocTinhArr->count() > 0){
             foreach ($loaiThuocTinhArr as $value) {
