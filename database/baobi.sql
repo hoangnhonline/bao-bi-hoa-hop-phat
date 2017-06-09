@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.2
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 08, 2017 at 01:28 AM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 7.0.9
+-- Host: localhost
+-- Generation Time: Jun 09, 2017 at 04:56 PM
+-- Server version: 5.6.30-1+deb.sury.org~wily+2
+-- PHP Version: 5.6.11-1ubuntu3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `khanhdat`
+-- Database: `baobi`
 --
 
 -- --------------------------------------------------------
@@ -72,6 +72,13 @@ CREATE TABLE `articles_cate` (
   `custom_text` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `articles_cate`
+--
+
+INSERT INTO `articles_cate` (`id`, `name`, `slug`, `alias`, `description`, `image_url`, `created_at`, `updated_at`, `created_user`, `updated_user`, `status`, `display_order`, `meta_title`, `meta_description`, `meta_keywords`, `custom_text`) VALUES
+(1, 'Tin tức', 'tin-tuc', 'Tin tuc', '', '', '2017-06-09 14:55:18', '2017-06-09 14:55:18', 0, 0, 1, 0, '', '', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -94,6 +101,19 @@ CREATE TABLE `banner` (
   `created_user` tinyint(4) NOT NULL,
   `updated_user` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `banner`
+--
+
+INSERT INTO `banner` (`id`, `image_url`, `ads_url`, `time_start`, `time_end`, `object_id`, `object_type`, `type`, `display_order`, `status`, `created_at`, `updated_at`, `created_user`, `updated_user`) VALUES
+(1, '2017/06/09/flat-paper-handle-carrier-bags-1496994886.png', '', 0, 0, 1, 3, 1, 2, 1, '2017-06-09 14:54:47', '2017-06-09 14:54:47', 1, 1),
+(2, '2017/06/09/sl2-1496994893.jpg', '', 0, 0, 1, 3, 1, 3, 1, '2017-06-09 14:54:54', '2017-06-09 14:54:54', 1, 1),
+(3, '2017/06/09/slide-2-1496994898.jpg', '', 0, 0, 1, 3, 1, 1, 1, '2017-06-09 14:54:59', '2017-06-09 14:54:59', 1, 1),
+(4, '2017/06/09/effdf00e4e9ee75a24408ef050519a78-1496997565.jpg', '', 0, 0, 2, 3, 1, 0, 1, '2017-06-09 15:39:26', '2017-06-09 15:39:26', 1, 1),
+(5, '2017/06/09/e3bc7870d47a5f22de8683a9276764b1-1496997570.jpg', '', 0, 0, 2, 3, 1, 0, 1, '2017-06-09 15:39:31', '2017-06-09 15:39:31', 1, 1),
+(6, '2017/06/09/7b006af9611ccf6dffe80b495f2b5717-1496997576.jpg', '', 0, 0, 2, 3, 1, 0, 1, '2017-06-09 15:39:37', '2017-06-09 15:39:37', 1, 1),
+(7, '2017/06/09/13254ae4090968f96b80a597c396de25-1496997581.jpg', '', 0, 0, 2, 3, 1, 0, 1, '2017-06-09 15:39:41', '2017-06-09 15:39:41', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -135,7 +155,11 @@ CREATE TABLE `cate` (
 --
 
 INSERT INTO `cate` (`id`, `name`, `alias`, `slug`, `description`, `loai_id`, `display_order`, `created_user`, `updated_user`, `created_at`, `updated_at`, `meta_id`, `is_hot`, `status`) VALUES
-(1, 'Xiaomi', 'Xiaomi', 'xiaomi', '', 1, 1, 1, 1, '2017-06-03 20:33:15', '2017-06-03 20:33:15', 3, 0, 1);
+(1, 'Thùng Carton 3 Lớp', 'Thung Carton 3 Lop', 'thung-carton-3-lop', '', 1, 1, 1, 1, '2017-06-09 14:24:44', '2017-06-09 14:24:44', 9, 0, 1),
+(2, 'Thùng Carton 5 Lớp', 'Thung Carton 5 Lop', 'thung-carton-5-lop', '', 1, 1, 1, 1, '2017-06-09 14:24:52', '2017-06-09 14:24:53', 10, 0, 1),
+(3, 'Thùng Carton 7 Lớp', 'Thung Carton 7 Lop', 'thung-carton-7-lop', '', 1, 1, 1, 1, '2017-06-09 14:25:00', '2017-06-09 14:25:00', 11, 0, 1),
+(4, 'Bao Bì Hộp Offset', 'Bao Bi Hop Offset', 'bao-bi-hop-offset', '', 1, 1, 1, 1, '2017-06-09 14:25:08', '2017-06-09 14:25:08', 12, 0, 1),
+(5, 'Pallet Giấy Tổ Ong', 'Pallet Giay To Ong', 'pallet-giay-to-ong', '', 1, 1, 1, 1, '2017-06-09 14:25:15', '2017-06-09 14:25:15', 13, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -528,8 +552,8 @@ INSERT INTO `district` (`id`, `name`, `slug`, `meta_id`, `id_dothi`, `city_id`, 
 (223, 'Cao Bằng', 'cao-bang', NULL, 204, 19, 13, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (224, 'Buôn Đôn', 'buon-don', NULL, 205, 20, 1, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (225, 'Cư Kuin', 'cu-kuin', NULL, 206, 20, 2, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
-(226, 'Cư M''gar', 'cu-mgar', NULL, 207, 20, 3, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
-(227, 'Ea H''Leo', 'ea-hleo', NULL, 208, 20, 4, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
+(226, 'Cư M\'gar', 'cu-mgar', NULL, 207, 20, 3, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
+(227, 'Ea H\'Leo', 'ea-hleo', NULL, 208, 20, 4, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (228, 'Ea Kar', 'ea-kar', NULL, 209, 20, 5, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (229, 'Ea Súp', 'ea-sup', NULL, 210, 20, 6, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (230, 'Krông Ana', 'krong-ana', NULL, 211, 20, 7, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
@@ -538,13 +562,13 @@ INSERT INTO `district` (`id`, `name`, `slug`, `meta_id`, `id_dothi`, `city_id`, 
 (233, 'Krông Năng', 'krong-nang', NULL, 214, 20, 10, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (234, 'Krông Pắc', 'krong-pac', NULL, 215, 20, 11, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (235, 'Lăk', 'lak', NULL, 216, 20, 12, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
-(236, 'M''Đrăk', 'mdrak', NULL, 217, 20, 13, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
+(236, 'M\'Đrăk', 'mdrak', NULL, 217, 20, 13, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (237, 'Buôn Ma Thuột', 'buon-ma-thuot', NULL, 218, 20, 14, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (238, 'Buôn Hồ', 'buon-ho', NULL, 697, 20, 15, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (239, 'Cư Jút', 'cu-jut', NULL, 219, 21, 1, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (240, 'Dăk GLong', 'dak-glong', NULL, 220, 21, 2, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (241, 'Dăk Mil', 'dak-mil', NULL, 221, 21, 3, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
-(242, 'Dăk R''Lấp', 'dak-rlap', NULL, 222, 21, 4, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
+(242, 'Dăk R\'Lấp', 'dak-rlap', NULL, 222, 21, 4, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (243, 'Dăk Song', 'dak-song', NULL, 223, 21, 5, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (244, 'Krông Nô', 'krong-no', NULL, 224, 21, 6, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (245, 'Tuy Đức', 'tuy-duc', NULL, 225, 21, 7, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
@@ -1055,9 +1079,8 @@ CREATE TABLE `loai_sp` (
 --
 
 INSERT INTO `loai_sp` (`id`, `name`, `alias`, `slug`, `description`, `display_order`, `is_hot`, `status`, `created_user`, `updated_user`, `created_at`, `updated_at`, `meta_id`) VALUES
-(1, 'Pin sạc dự phòng', 'Pin sac du phong', 'pin-sac-du-phong', '', 2, 0, 1, 1, 1, '2017-06-02 22:31:19', '2017-06-02 22:31:19', 1),
-(2, 'Ốp lưng', 'Op lung', 'op-lung', '', 1, 0, 1, 1, 1, '2017-06-02 22:31:49', '2017-06-02 22:31:49', 2),
-(3, 'Tai nghe bluetooth', 'Tai nghe bluetooth', 'tai-nghe-bluetooth', '', 1, 0, 1, 1, 1, '2017-06-03 20:37:00', '2017-06-03 20:37:00', 4);
+(1, 'BAO BÌ CARTON', 'BAO BI CARTON', 'bao-bi-carton', '', 1, 0, 1, 1, 1, '2017-06-09 14:24:19', '2017-06-09 14:24:20', 7),
+(2, 'GIẤY TẤM CARTON CÁC LOẠI', 'GIAY TAM CARTON CAC LOAI', 'giay-tam-carton-cac-loai', '', 1, 0, 1, 1, 1, '2017-06-09 14:24:28', '2017-06-09 14:24:28', 8);
 
 -- --------------------------------------------------------
 
@@ -1087,7 +1110,37 @@ INSERT INTO `meta_data` (`id`, `title`, `description`, `keywords`, `custom_text`
 (3, 'Pin sạc dự phòng Xiaomi', '', '', '', 1, 1, '2017-06-03 20:33:15', '2017-06-03 20:33:15'),
 (4, 'Tai nghe bluetooth', 'Tai nghe bluetooth', 'Tai nghe bluetooth', '', 1, 1, '2017-06-03 20:37:00', '2017-06-03 20:37:00'),
 (5, '', '', '', '', 1, 1, '2017-06-08 05:55:10', '2017-06-08 05:55:10'),
-(6, '', '', '', '', 1, 1, '2017-06-08 05:59:01', '2017-06-08 05:59:01');
+(6, '', '', '', '', 1, 1, '2017-06-08 05:59:01', '2017-06-08 05:59:01'),
+(7, 'BAO BÌ CARTON', 'BAO BÌ CARTON', 'BAO BÌ CARTON', 'BAO BÌ CARTON', 1, 1, '2017-06-09 14:24:19', '2017-06-09 14:24:19'),
+(8, 'GIẤY TẤM CARTON CÁC LOẠI', 'GIẤY TẤM CARTON CÁC LOẠI', 'GIẤY TẤM CARTON CÁC LOẠI', '', 1, 1, '2017-06-09 14:24:28', '2017-06-09 14:24:28'),
+(9, 'Thùng Carton 3 Lớp', 'Thùng Carton 3 Lớp', 'Thùng Carton 3 Lớp', '', 1, 1, '2017-06-09 14:24:44', '2017-06-09 14:24:44'),
+(10, 'Thùng Carton 5 Lớp', 'Thùng Carton 5 Lớp', 'Thùng Carton 5 Lớp', '', 1, 1, '2017-06-09 14:24:52', '2017-06-09 14:24:52'),
+(11, 'Thùng Carton 7 Lớp', 'Thùng Carton 7 Lớp', 'Thùng Carton 7 Lớp', '', 1, 1, '2017-06-09 14:25:00', '2017-06-09 14:25:00'),
+(12, 'Bao Bì Hộp Offset', 'Bao Bì Hộp Offset', 'Bao Bì Hộp Offset', '', 1, 1, '2017-06-09 14:25:08', '2017-06-09 14:25:08'),
+(13, 'Pallet Giấy Tổ Ong', 'Pallet Giấy Tổ Ong\r\n', 'Pallet Giấy Tổ Ong\r\n', '', 1, 1, '2017-06-09 14:25:15', '2017-06-09 14:25:15'),
+(14, '', '', '', '', 1, 1, '2017-06-09 14:33:36', '2017-06-09 14:33:36'),
+(15, '', '', '', '', 1, 1, '2017-06-09 14:36:17', '2017-06-09 14:36:17'),
+(16, '', '', '', '', 1, 1, '2017-06-09 14:36:35', '2017-06-09 14:36:35'),
+(17, '', '', '', '', 1, 1, '2017-06-09 14:36:59', '2017-06-09 14:36:59'),
+(18, '', '', '', '', 1, 1, '2017-06-09 14:38:59', '2017-06-09 14:38:59'),
+(19, '', '', '', '', 1, 1, '2017-06-09 14:39:09', '2017-06-09 14:39:09'),
+(20, '', '', '', '', 1, 1, '2017-06-09 14:39:17', '2017-06-09 14:39:17'),
+(21, '', '', '', '', 1, 1, '2017-06-09 14:39:26', '2017-06-09 14:39:26'),
+(22, '', '', '', '', 1, 1, '2017-06-09 14:39:34', '2017-06-09 14:39:34'),
+(23, '', '', '', '', 1, 1, '2017-06-09 14:46:22', '2017-06-09 14:46:22'),
+(24, '', '', '', '', 1, 1, '2017-06-09 14:46:30', '2017-06-09 14:46:30'),
+(25, '', '', '', '', 1, 1, '2017-06-09 14:46:40', '2017-06-09 14:46:40'),
+(26, '', '', '', '', 1, 1, '2017-06-09 14:46:49', '2017-06-09 14:46:49'),
+(27, '', '', '', '', 1, 1, '2017-06-09 14:47:08', '2017-06-09 14:47:08'),
+(28, '', '', '', '', 1, 1, '2017-06-09 14:48:35', '2017-06-09 14:48:35'),
+(29, '', '', '', '', 1, 1, '2017-06-09 14:48:44', '2017-06-09 14:48:44'),
+(30, '', '', '', '', 1, 1, '2017-06-09 14:48:54', '2017-06-09 14:48:54'),
+(31, '', '', '', '', 1, 1, '2017-06-09 14:49:01', '2017-06-09 14:49:01'),
+(32, '', '', '', '', 1, 1, '2017-06-09 14:49:08', '2017-06-09 14:49:08'),
+(33, '', '', '', '', 1, 1, '2017-06-09 14:51:29', '2017-06-09 14:51:29'),
+(34, '', '', '', '', 1, 1, '2017-06-09 14:51:36', '2017-06-09 14:51:36'),
+(35, '', '', '', '', 1, 1, '2017-06-09 14:51:50', '2017-06-09 14:51:50'),
+(36, '', '', '', '', 1, 1, '2017-06-09 14:51:59', '2017-06-09 14:51:59');
 
 -- --------------------------------------------------------
 
@@ -1130,6 +1183,13 @@ CREATE TABLE `pages` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
+--
+-- Dumping data for table `pages`
+--
+
+INSERT INTO `pages` (`id`, `title`, `alias`, `description`, `content`, `image_url`, `slug`, `status`, `meta_title`, `meta_description`, `meta_keywords`, `custom_text`, `created_user`, `updated_user`, `created_at`, `updated_at`) VALUES
+(1, 'Giới thiệu', 'Gioi thieu', '', 'Nội dung trang giới thiệu', '', 'gioi-thieu', 1, '', '', '', '', 1, 1, '2017-06-09 14:52:42', '2017-06-09 14:52:42');
+
 -- --------------------------------------------------------
 
 --
@@ -1147,9 +1207,6 @@ CREATE TABLE `product` (
   `loai_id` int(11) NOT NULL,
   `cate_id` int(11) NOT NULL,
   `price` varchar(50) NOT NULL,
-  `price_5` int(11) DEFAULT NULL,
-  `guarantee` varchar(100) DEFAULT NULL,
-  `video_url` int(11) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `in_stock` tinyint(1) NOT NULL DEFAULT '1',
   `is_hot` tinyint(1) NOT NULL DEFAULT '0',
@@ -1166,8 +1223,30 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `name`, `alias`, `slug`, `description`, `content`, `thumbnail_id`, `loai_id`, `cate_id`, `price`, `price_5`, `guarantee`, `video_url`, `status`, `in_stock`, `is_hot`, `is_sale`, `display_order`, `meta_id`, `created_user`, `updated_user`, `created_at`, `updated_at`) VALUES
-(1, 'Pin dự phòng Xiaomi Mi Gen 2 20000 mAh (px.009)', 'Pin du phong Xiaomi Mi Gen 2 20000 mAh (px.009)', 'pin-du-phong-xiaomi-mi-gen-2-20000-mah-px009', 'dfsasg dhdsf h', 'fhsdhdfhdfsh', 2, 1, 1, '649000', 500000, '3 thang', NULL, 1, 1, 1, 0, 1, 6, 1, 1, '2017-06-08 05:59:01', '2017-06-08 06:27:07');
+INSERT INTO `product` (`id`, `name`, `alias`, `slug`, `description`, `content`, `thumbnail_id`, `loai_id`, `cate_id`, `price`, `status`, `in_stock`, `is_hot`, `is_sale`, `display_order`, `meta_id`, `created_user`, `updated_user`, `created_at`, `updated_at`) VALUES
+(1, 'Thùng Carton 3 Lớp', 'Thung Carton 3 Lop', 'thung-carton-3-lop', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;', 1, 1, 1, '', 1, 1, 0, 0, 1, 14, 1, 1, '2017-06-09 14:33:36', '2017-06-09 14:37:42'),
+(2, 'Thùng carton 3 lớp', 'Thung carton 3 lop', 'thung-carton-3-lop', '', '', 2, 1, 1, '', 1, 1, 0, 0, 1, 15, 1, 1, '2017-06-09 14:36:17', '2017-06-09 14:37:35'),
+(3, 'Thùng carton 3 lớp', 'Thung carton 3 lop', 'thung-carton-3-lop', '', '', 3, 1, 1, '', 1, 1, 0, 0, 1, 16, 1, 1, '2017-06-09 14:36:35', '2017-06-09 14:37:23'),
+(4, 'Thùng carton 3 lớp', 'Thung carton 3 lop', 'thung-carton-3-lop', '', '', 4, 1, 1, '', 1, 1, 0, 0, 1, 17, 1, 1, '2017-06-09 14:36:59', '2017-06-09 14:37:15'),
+(5, 'Thùng carton 5 lớp', 'Thung carton 5 lop', 'thung-carton-5-lop', '', '', 5, 1, 2, '', 1, 1, 0, 0, 1, 18, 1, 1, '2017-06-09 14:38:59', '2017-06-09 14:38:59'),
+(6, 'Thùng carton 5 lớp', 'Thung carton 5 lop', 'thung-carton-5-lop', '', '', 6, 1, 2, '', 1, 1, 0, 0, 1, 19, 1, 1, '2017-06-09 14:39:08', '2017-06-09 14:39:09'),
+(7, 'Thùng carton 5 lớp', 'Thung carton 5 lop', 'thung-carton-5-lop', '', '', 7, 1, 2, '', 1, 1, 0, 0, 1, 20, 1, 1, '2017-06-09 14:39:17', '2017-06-09 14:39:17'),
+(8, 'Thùng carton 5 lớp', 'Thung carton 5 lop', 'thung-carton-5-lop', '', '', 8, 1, 2, '', 1, 1, 0, 0, 1, 21, 1, 1, '2017-06-09 14:39:26', '2017-06-09 14:39:26'),
+(9, 'Thùng carton 5 lớp', 'Thung carton 5 lop', 'thung-carton-5-lop', '', '', 9, 1, 2, '', 1, 1, 0, 0, 1, 22, 1, 1, '2017-06-09 14:39:34', '2017-06-09 14:39:34'),
+(10, 'Thùng carton 7 lớp', 'Thung carton 7 lop', 'thung-carton-7-lop', '', '', 10, 1, 3, '', 1, 1, 0, 0, 1, 23, 1, 1, '2017-06-09 14:46:22', '2017-06-09 14:46:22'),
+(11, 'Thùng carton 7 lớp', 'Thung carton 7 lop', 'thung-carton-7-lop', '', '', 11, 1, 3, '', 1, 1, 0, 0, 1, 24, 1, 1, '2017-06-09 14:46:30', '2017-06-09 14:46:31'),
+(12, 'Thùng carton 7 lớp', 'Thung carton 7 lop', 'thung-carton-7-lop', '', '', 12, 1, 3, '', 1, 1, 0, 0, 1, 25, 1, 1, '2017-06-09 14:46:40', '2017-06-09 14:46:40'),
+(13, 'Thùng carton 7 lớp', 'Thung carton 7 lop', 'thung-carton-7-lop', '', '', 13, 1, 3, '', 1, 1, 0, 0, 1, 26, 1, 1, '2017-06-09 14:46:49', '2017-06-09 14:46:50'),
+(14, 'Thùng carton 7 lớp', 'Thung carton 7 lop', 'thung-carton-7-lop', '', '', 14, 1, 3, '', 1, 1, 0, 0, 1, 27, 1, 1, '2017-06-09 14:47:07', '2017-06-09 14:47:08'),
+(15, 'Pallet giấy tổ ong', 'Pallet giay to ong', 'pallet-giay-to-ong', '', '', 15, 1, 5, '', 1, 1, 0, 0, 1, 28, 1, 1, '2017-06-09 14:48:35', '2017-06-09 14:49:55'),
+(16, 'Pallet giấy tổ ong', 'Pallet giay to ong', 'pallet-giay-to-ong', '', '', 16, 1, 5, '', 1, 1, 0, 0, 1, 29, 1, 1, '2017-06-09 14:48:44', '2017-06-09 14:49:52'),
+(17, 'Pallet giấy tổ ong', 'Pallet giay to ong', 'pallet-giay-to-ong', '', '', 17, 1, 5, '', 1, 1, 0, 0, 1, 30, 1, 1, '2017-06-09 14:48:53', '2017-06-09 14:49:47'),
+(18, 'Pallet giấy tổ ong', 'Pallet giay to ong', 'pallet-giay-to-ong', '', '', 18, 1, 5, '', 1, 1, 0, 0, 1, 31, 1, 1, '2017-06-09 14:49:01', '2017-06-09 14:49:43'),
+(19, 'Pallet giấy tổ ong', 'Pallet giay to ong', 'pallet-giay-to-ong', '', '', 19, 1, 5, '', 1, 1, 0, 0, 1, 32, 1, 1, '2017-06-09 14:49:08', '2017-06-09 14:49:37'),
+(20, 'Giấy tấm carton', 'Giay tam carton', 'giay-tam-carton', '', '', 20, 2, 0, '', 1, 1, 0, 0, 1, 33, 1, 1, '2017-06-09 14:51:29', '2017-06-09 14:51:29'),
+(21, 'Giấy tấm carton', 'Giay tam carton', 'giay-tam-carton', '', '', 21, 2, 0, '', 1, 1, 0, 0, 1, 34, 1, 1, '2017-06-09 14:51:36', '2017-06-09 14:51:36'),
+(22, 'Giấy tấm carton', 'Giay tam carton', 'giay-tam-carton', '', '', 22, 2, 0, '', 1, 1, 0, 0, 1, 35, 1, 1, '2017-06-09 14:51:50', '2017-06-09 14:51:50'),
+(23, 'Giấy tấm carton', 'Giay tam carton', 'giay-tam-carton', '', '', 23, 2, 0, '', 1, 1, 0, 0, 1, 36, 1, 1, '2017-06-09 14:51:59', '2017-06-09 14:51:59');
 
 -- --------------------------------------------------------
 
@@ -1187,7 +1266,29 @@ CREATE TABLE `product_img` (
 --
 
 INSERT INTO `product_img` (`id`, `product_id`, `image_url`, `display_order`) VALUES
-(2, 1, '2017/06/08/pin-dung-phong-xiaomi-10400-5-1496876339.jpg', 1);
+(1, 1, '2017/06/09/thung-carton-3-lop-1496993615.jpg', 1),
+(2, 2, '2017/06/09/thung-carton-3-lop-1-1496993776.jpg', 1),
+(3, 3, '2017/06/09/carton-1496993794.jpg', 1),
+(4, 4, '2017/06/09/ban-le-bao-bi-giay-carton-quan-12-ho-chi-minh-magix-grande-1496993815.jpg', 1),
+(5, 5, '2017/06/09/mau-giay-5-lop-1496993938.jpg', 1),
+(6, 6, '2017/06/09/song-carton-5-lop-1496993947.jpg', 1),
+(7, 7, '2017/06/09/201305125113-mau-thung-carton1338870740-1496993956.jpg', 1),
+(8, 8, '2017/06/09/5-lop-1496993964.png', 1),
+(9, 9, '2017/06/09/cac-phuong-thuc-quan-ly-thung-carton-1496993973.jpg', 1),
+(10, 10, '2017/06/09/thung-giay-carton-3-lop-5-lop-7-lop-magixvn-bao-bi-giay-grande-1496994381.jpg', 1),
+(11, 11, '2017/06/09/thung-carton-7-lop-052141620120605214-1-1496994389.jpg', 1),
+(12, 12, '2017/06/09/ban-le-bao-bi-giay-carton-quan-12-ho-chi-minh-magix-grande-1-1496994399.jpg', 1),
+(13, 13, '2017/06/09/thung-7-lop-01-1496994409.jpg', 1),
+(14, 14, '2017/06/09/thung-carton-7-lop-vp-02-816d5d0e-1496994427.jpg', 1),
+(15, 15, '2017/06/09/35-1496994514.jpg', 1),
+(16, 16, '2017/06/09/pallet-giay-to-ong-02-63-1496994523.jpg', 1),
+(17, 17, '2017/06/09/pallet-giay-1496994532.jpg', 1),
+(18, 18, '2017/06/09/pallet-giay-08-16-1496994540.jpg', 1),
+(19, 19, '2017/06/09/pallet-giay-to-ong-la-gi-3-1496994548.jpg', 1),
+(20, 20, '2017/06/09/42-1496994688.jpg', 1),
+(21, 21, '2017/06/09/okj1334632305-1496994695.jpg', 1),
+(22, 22, '2017/06/09/thung-carton-37-1496994709.jpg', 1),
+(23, 23, '2017/06/09/cyl1384569352-1496994715.JPG', 1);
 
 -- --------------------------------------------------------
 
@@ -1332,7 +1433,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `full_name`, `email`, `password`, `role`, `status`, `changed_password`, `remember_token`, `created_user`, `updated_user`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@linhkienkhanhdat.com', '$2y$10$i7Sk34LkUO8YU6Dg07aq4eKBmxveVSph816tYi8OfOT0hWMEbAhOW', 3, 1, 0, '', 1, 1, '2017-06-02 00:00:00', '2017-06-02 00:00:00');
+(1, 'Admin', 'admin@gmail.com', '$2y$10$i7Sk34LkUO8YU6Dg07aq4eKBmxveVSph816tYi8OfOT0hWMEbAhOW', 3, 1, 0, '', 1, 1, '2017-06-02 00:00:00', '2017-06-02 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1574,12 +1675,12 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT for table `articles_cate`
 --
 ALTER TABLE `articles_cate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `block`
 --
@@ -1589,7 +1690,7 @@ ALTER TABLE `block`
 -- AUTO_INCREMENT for table `cate`
 --
 ALTER TABLE `cate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `city`
 --
@@ -1624,12 +1725,12 @@ ALTER TABLE `info_seo`
 -- AUTO_INCREMENT for table `loai_sp`
 --
 ALTER TABLE `loai_sp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `meta_data`
 --
 ALTER TABLE `meta_data`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `newsletter`
 --
@@ -1639,17 +1740,17 @@ ALTER TABLE `newsletter`
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `product_img`
 --
 ALTER TABLE `product_img`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `seo`
 --
