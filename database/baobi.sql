@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jun 09, 2017 at 04:56 PM
--- Server version: 5.6.30-1+deb.sury.org~wily+2
--- PHP Version: 5.6.11-1ubuntu3.4
+-- Host: 127.0.0.1
+-- Generation Time: Jun 10, 2017 at 04:42 AM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -552,8 +552,8 @@ INSERT INTO `district` (`id`, `name`, `slug`, `meta_id`, `id_dothi`, `city_id`, 
 (223, 'Cao Bằng', 'cao-bang', NULL, 204, 19, 13, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (224, 'Buôn Đôn', 'buon-don', NULL, 205, 20, 1, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (225, 'Cư Kuin', 'cu-kuin', NULL, 206, 20, 2, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
-(226, 'Cư M\'gar', 'cu-mgar', NULL, 207, 20, 3, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
-(227, 'Ea H\'Leo', 'ea-hleo', NULL, 208, 20, 4, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
+(226, 'Cư M''gar', 'cu-mgar', NULL, 207, 20, 3, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
+(227, 'Ea H''Leo', 'ea-hleo', NULL, 208, 20, 4, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (228, 'Ea Kar', 'ea-kar', NULL, 209, 20, 5, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (229, 'Ea Súp', 'ea-sup', NULL, 210, 20, 6, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (230, 'Krông Ana', 'krong-ana', NULL, 211, 20, 7, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
@@ -562,13 +562,13 @@ INSERT INTO `district` (`id`, `name`, `slug`, `meta_id`, `id_dothi`, `city_id`, 
 (233, 'Krông Năng', 'krong-nang', NULL, 214, 20, 10, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (234, 'Krông Pắc', 'krong-pac', NULL, 215, 20, 11, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (235, 'Lăk', 'lak', NULL, 216, 20, 12, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
-(236, 'M\'Đrăk', 'mdrak', NULL, 217, 20, 13, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
+(236, 'M''Đrăk', 'mdrak', NULL, 217, 20, 13, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (237, 'Buôn Ma Thuột', 'buon-ma-thuot', NULL, 218, 20, 14, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (238, 'Buôn Hồ', 'buon-ho', NULL, 697, 20, 15, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (239, 'Cư Jút', 'cu-jut', NULL, 219, 21, 1, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (240, 'Dăk GLong', 'dak-glong', NULL, 220, 21, 2, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (241, 'Dăk Mil', 'dak-mil', NULL, 221, 21, 3, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
-(242, 'Dăk R\'Lấp', 'dak-rlap', NULL, 222, 21, 4, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
+(242, 'Dăk R''Lấp', 'dak-rlap', NULL, 222, 21, 4, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (243, 'Dăk Song', 'dak-song', NULL, 223, 21, 5, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (244, 'Krông Nô', 'krong-no', NULL, 224, 21, 6, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
 (245, 'Tuy Đức', 'tuy-duc', NULL, 225, 21, 7, 0, '2017-04-27 13:46:52', '2017-04-27 13:46:52'),
@@ -1326,26 +1326,29 @@ CREATE TABLE `settings` (
 
 INSERT INTO `settings` (`id`, `name`, `value`, `created_at`, `updated_at`) VALUES
 (1, 'base_url', 'http://nghien.biz', '2016-07-27 14:37:52', '2016-07-27 14:37:52'),
-(2, 'site_title', 'Mua bán nhà đất Hồ Chí Minh', '2016-07-27 14:37:52', '2017-05-27 12:13:45'),
-(3, 'site_description', 'Chuyên cung cấp thông tin về nhà đất như: nhà riêng, nhà phố, đất nền, chung cư, biệt thự.  Tất cả đầy đủ pháp lý, minh bạch, rõ ràng.', '2016-07-27 14:37:52', '2017-05-27 12:13:45'),
-(4, 'site_keywords', 'mua ban nha dat, nha dat ho chi minh', '2016-07-27 14:37:52', '2017-05-27 12:13:45'),
-(5, 'admin_email', 'nghien.biz@gmail.com', '2016-07-27 14:37:52', '2016-07-27 14:37:52'),
-(22, 'mail_server', 'mail.example.com', '2016-07-27 14:37:52', '2016-07-27 14:37:52'),
-(23, 'mail_login_name', 'login@example.com', '2016-07-27 14:37:52', '2016-07-27 14:37:52'),
-(24, 'mail_password', 'password', '2016-07-27 14:37:52', '2016-07-27 14:37:52'),
-(105, 'site_name', 'Trang chủ - Dothi9.com', '2016-07-27 14:37:52', '2017-05-27 12:13:45'),
-(113, 'google_analystic', 'UA-63665479-6', '2016-07-27 14:37:52', '2017-05-27 12:13:45'),
-(114, 'facebook_appid', '282210028789883', '2016-07-27 14:37:52', '2017-05-27 12:13:45'),
-(115, 'google_fanpage', '', '2016-07-27 14:37:52', '2017-05-27 12:13:45'),
-(116, 'facebook_fanpage', 'https://www.facebook.com/dothi9.com', '2016-07-27 14:37:52', '2017-05-27 12:13:45'),
-(117, 'twitter_fanpage', '', '2016-07-27 14:37:52', '2017-05-27 12:13:45'),
-(130, 'logo', '2017/05/27/logo-1495862024.jpg', '2016-07-27 14:37:52', '2017-05-27 12:13:45'),
-(131, 'favicon', '2016/11/29/favicon-1480367931.png', '2016-07-27 14:37:52', '2017-05-27 12:13:45'),
-(141, 'banner', '2016/12/06/icho-vn-mua-online-gia-si-1480992823.jpg', '2016-07-27 14:37:52', '2017-05-27 12:13:45'),
-(142, 'custom_text', '', '2016-07-27 14:37:52', '2017-05-27 12:13:45'),
-(143, 'email_cc', 'tundq.ipl@gmail.com; tundq@icare.center; hiepvv.ipl@gmail.com; lamhuong77@gmail.com; muahang@icho.vn; hoangnhonline@gmail.com', '2016-11-11 00:00:00', '2017-05-27 12:13:45'),
-(144, 'thong_bao_chung', '<p><em>- Mọi người cố gắng đạt chỉ ti&ecirc;u nh&eacute;.</em></p>\r\n', '2017-05-11 00:00:00', '2017-05-28 09:43:31'),
-(145, 'cty_info', '<strong>C&Ocirc;NG TY BẤT ĐỘNG SẢN PH&Uacute; LONG CO.,LTD</strong><br />\r\n<strong>Địa chỉ</strong>: 185A T&acirc;y H&ograve;a, Phường Phước Long A, Quận 9, Tp. Hồ Ch&iacute; Minh<br />\r\n<strong>Hotline: <span style="color:#ff0033"><span style="font-size:16px">0902.950.950</span></span></strong><br />\r\n<strong>Viber/Zalo</strong>:&nbsp;0902.950.950<br />\r\n<strong>Email:&nbsp;nguyenlong0098@gmail.com</strong>', '0000-00-00 00:00:00', '2017-05-27 12:13:45');
+(2, 'site_title', 'Bao bì Hòa Hợp Phát', '2016-07-27 14:37:52', '2017-06-10 08:24:37'),
+(3, 'site_description', 'Chuyên cung cấp các loại bao bì', '2016-07-27 14:37:52', '2017-06-10 08:24:37'),
+(4, 'site_keywords', 'bao bì, hòa hợp phát, thùng carton 3 lớp', '2016-07-27 14:37:52', '2017-06-10 08:24:37'),
+(5, 'admin_email', 'hoangnhonline@gmail.com', '2016-07-27 14:37:52', '2016-07-27 14:37:52'),
+(105, 'site_name', 'Bao bì Hòa Hợp Phát', '2016-07-27 14:37:52', '2017-06-10 08:24:37'),
+(113, 'google_analystic', '', '2016-07-27 14:37:52', '2017-06-10 08:24:37'),
+(114, 'facebook_appid', '', '2016-07-27 14:37:52', '2017-06-10 08:24:37'),
+(115, 'google_fanpage', '', '2016-07-27 14:37:52', '2017-06-10 08:24:37'),
+(116, 'facebook_fanpage', '', '2016-07-27 14:37:52', '2017-06-10 08:24:37'),
+(117, 'twitter_fanpage', '', '2016-07-27 14:37:52', '2017-06-10 08:24:37'),
+(130, 'logo', '', '2016-07-27 14:37:52', '2017-06-10 08:24:37'),
+(131, 'favicon', '', '2016-07-27 14:37:52', '2017-06-10 08:24:37'),
+(141, 'banner', '', '2016-07-27 14:37:52', '2017-06-10 08:24:37'),
+(142, 'custom_text', '', '2016-07-27 14:37:52', '2017-06-10 08:24:37'),
+(145, 'cty_info', '<p><span style="color:#006699">C&Ocirc;NG TY TNHH SẢN XU&Acirc;́T - THƯƠNG MẠI HÒA HỢP PHÁT</span></p>\r\n\r\n<p><strong>Địa chỉ:</strong> Khu KDC Thu&acirc;̣n Giao, Kp. Bình Thu&acirc;̣n 2, Thu&acirc;̣n Giao, Thu&acirc;̣n An, Bình Dương</p>\r\n\r\n<p><strong>Đi&ecirc;n thoại:</strong> (0650) 3721230 - <strong>Fax:</strong>(0650) 3721231</p>\r\n\r\n<p><strong>Email:</strong> <a class="link" href="mailto:baobigiay.hoahopphatbd@gmail.com?subject=feedback"> baobigiay.hoahopphatbd@gmail.com</a> - <strong>Website:&nbsp;</strong><a class="link" href="#" title="">http://truongdeptrai.com</a></p>\r\n', '2017-06-30 00:00:00', '2017-06-10 08:24:37'),
+(146, 'loai_hinh', 'Nhà Sản Xuất', '2017-06-30 00:00:00', '2017-06-30 00:00:00'),
+(147, 'san_pham_dich_vu_chinh', 'Thùng carton 3 lớp, Thùng carton 5 lớp...', '2017-06-30 00:00:00', '2017-06-30 00:00:00'),
+(148, 'nam_thanh_lap', '2008', '2017-06-15 00:00:00', '2017-06-15 00:00:00'),
+(149, 'so_thanh_vien', 'Từ 51 - 100 người', '2017-06-14 00:00:00', '2017-06-14 00:00:00'),
+(150, 'doanh_thu', 'Bí mật/ không public', '2017-06-30 00:00:00', '2017-06-30 00:00:00'),
+(151, 'thi_truong_chinh', 'Toàn quốc', '2017-06-30 00:00:00', '2017-06-30 00:00:00'),
+(152, 'chung_chi', '', '2017-06-30 00:00:00', '2017-06-30 00:00:00'),
+(153, 'nang_luc', '', '2017-06-30 00:00:00', '2017-06-30 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1760,7 +1763,7 @@ ALTER TABLE `seo`
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
 --
 -- AUTO_INCREMENT for table `tag`
 --
