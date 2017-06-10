@@ -22,7 +22,7 @@
     <meta property="og:title" content="@yield('title')" />
     <meta property="og:description" content="@yield('site_description')" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:site_name" content="iCho.vn" />
+    <meta property="og:site_name" content="Bao bì Hòa Hợp Phát" />
     <?php $socialImage = isset($socialImage) ? $socialImage : $settingArr['banner']; ?>
     <meta property="og:image" content="{{ Helper::showImage($socialImage) }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -85,10 +85,10 @@
 							<a href="{{ route('home') }}" title="Trang Chủ">Trang Chủ</a>
 						</li><!-- END MENU HOME -->
 						<li class="level0">
-							<a href="gioi-thieu.html" title="Giới Thiệu">Giới Thiệu</a>
+							<a href="{{ route('danh-muc', 'gioi-thieu') }}" title="Giới Thiệu">Giới Thiệu</a>
 						</li><!-- END MENU HOME -->
 						<li class="level0 parent">
-							<a href="san-pham.html" title="Sản Phẩm">Sản Phẩm</a>
+							<a href="{{ route('danh-muc', 'san-pham') }}" title="Sản Phẩm">Sản Phẩm</a>
 							<ul class="level0 submenu submenu-white">
 								@foreach($loaiSpList as $loaiSp)
 								<li class="level1 @if($cateList[$loaiSp->id]->count() > 0) parent @endif">
@@ -105,10 +105,10 @@
 							</ul>
 						</li><!-- END MENU HOME -->
 						<li class="level0">
-							<a href="ho-so-cong-ty.html" title="Hồ Sơ Công Ty">Hồ Sơ Công Ty</a>
+							<a href="{{ route('info') }}" title="Hồ Sơ Công Ty">Hồ Sơ Công Ty</a>
 						</li><!-- END MENU HOME -->
 						<li class="level0">
-							<a href="lien-he.html" title="Liên Hệ">Liên Hệ</a>
+							<a href="{{ route('contact') }}" title="Liên Hệ">Liên Hệ</a>
 						</li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
@@ -120,8 +120,9 @@
         @yield('gioi_thieu')
 
 		<section class="block-2-col clearfix">
-			@include('frontend.home.sidebar')
-
+			@if(\Request::route()->getName() != 'contact')
+				@include('frontend.home.sidebar')				
+			@endif
 			@yield('content')
 		</section><!-- /block-2-col -->
 
@@ -163,8 +164,7 @@
 	<!-- JS Sticky -->
 	<script src="{{ URL::asset('assets/vendor/sticky/jquery.sticky.js') }}"></script>
 	<!-- Js Common -->
-	<script src="{{ URL::asset('assets/js/common.js') }}"></script>
-
+	<script src="{{ URL::asset('assets/js/common.js') }}"></script>	
 	<script type="text/javascript"> 
 	$(window).on('load', function() {
 	    $('#slider').nivoSlider({
@@ -205,6 +205,6 @@
         infiniteLoop: false
     });
 	</script>
-
+	@yield('javascript_page')
 </body>
 </html>

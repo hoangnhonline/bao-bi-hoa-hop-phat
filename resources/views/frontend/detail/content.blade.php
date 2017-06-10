@@ -1,277 +1,125 @@
 @include('frontend.partials.meta')
 @section('content')
-<section class="col-sm-8 col-xs-12 block-sitemain">
-<article class="block-breadcrumb-page">
-	<ul class="breadcrumb">	
-		<li><a href="{{ route('home') }}" title="Trở về trang chủ">Trang chủ</a></li>
-		<li>
-			@if($detail->type == 1)			
-			<a href="{{ route('ban') }}">BĐS Bán</a>
-			@else
-			<a href="{{ route('cho-thue') }}">BĐS Cho thuê</a>
-			@endif
-		</li>
-		<li>					
-			<a href="{{ route('danh-muc', $rsLoai->slug ) }}">{{ $rsLoai->name }}</a>			
-		</li>
-		<!--<li class="active">{{ $detail->title }}</li>-->
-	</ul>
-</article>
-	<article class="block block-cate-news-detail">
-		<h1>{{ $detail->title }}</h1>
-		<div class="cate-news-detail-location">
-	        <i class="fa fa-map-marker"></i> Khu vực:
-	    	{{ Helper::getName($detail->district_id, 'district')}} - {{ Helper::getName($detail->city_id, 'city')}}
-	    </div><!-- /cate-news-detail-location -->
-	    <ul class="cate-news-detail-price clearfix">
-			<li><p>Giá: <span>{{ $detail->price }} {{ Helper::getName($detail->price_unit_id, 'price_unit')}}</span></p></li>
-			<li><p>Diện tích: <span>{{ $detail->area }} m<sup>2</sup></span></p></li>
-	    </ul><!-- /cate-news-detail-price -->
-	    <hr>
-	    <div class="cate-news-detail-desc">
-	    	<h3>Thông tin mô tả</h3>
-	    	<div class="cate-news-detail-desc-content">
-	    		<?php echo $detail->description; ?>
-	    	</div>
-	    </div><!-- /cate-news-detail-desc -->
-	    <div class="cate-news-detail-tab">
-		 	<!-- Nav tabs -->
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a class="imgdetail" href="#home" aria-controls="home" role="tab" data-toggle="tab">Hình ảnh</a></li>
-				<li role="presentation"><a class="mapdetail" href="#profile" aria-controls="profile" role="tab" data-toggle="tab" onclick="initAutocomplete();">Bản đồ</a></li>
-			</ul>
-		 	<!-- Tab panes -->
-			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane active" id="home">
-					<div id="slide-detail">
-						<ul class="slide-detail">
-							@foreach( $hinhArr as $hinh )
-							<li><img src="{{ Helper::showImage($hinh['image_url']) }}" /></li>
-                            @endforeach
-						</ul>
-						<ul id="bx-pager-detail">
-							<?php $i = 0; ?>
-							@foreach( $hinhArr as $hinh )							
-							<li><a data-slide-index="{{ $i }}" href=""><img src="{{ Helper::showImage($hinh['image_url']) }}" /></a></li>
-							<?php $i++; ?>
-							@endforeach
-						</ul>
+<div class="col-sm-9 block-main">
+	<div class="block-product block-block-title block-page">
+		<div class="block-content">
+			<div class="product-view">
+	            <div class="block-slide-proview">
+	                <div class="row">
+	                    <div class="product-img-box col-md-6 col-sm-6 col-xs-12">
+	                        <div class="bxslider product-img-gallery">
+	                        	<?php $i = 0; ?>
+	                            @foreach( $hinhArr as $hinh )
+	                            <?php $i++; ?>
+	                            <div class="item">
+	                                <img src="{{ Helper::showImage($hinh['image_url']) }}" alt="{!! $detail->name !!} {{ $i }}" />
+	                            </div>								
+	                            @endforeach	                            
+	                        </div>
+	                        <div class="product-img-thumb">
+	                            <div id="gallery_01" class="pro-thumb-img">
+	                                <?php $i = 0; ?>
+		                            @foreach( $hinhArr as $hinh )
+		                            <?php $i++; ?>
+		                            <div class="item">
+	                                    <a href="javascript:void(0)" data-slide-index="{{ $i-1 }}">
+	                                        <img src="{{ Helper::showImage($hinh['image_url']) }}" alt="{!! $detail->name !!} {{ $i }}" />
+	                                    </a>
+	                                </div>		                            							
+		                            @endforeach	                                
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="product-shop col-md-6 col-sm-6 col-xs-12">
+	                        <div class="product-name">
+	                            <h1 class="name-product-detail">{!! $detail->name !!}</h1>
+	                        </div>
+	                        @if($detail->description)
+	                        <div class="product-description">
+	                            <label class="title">Mô tả:</label>
+	                            <div class="pro-desc-info">
+	                                {!! $detail->description !!}
+	                            </div>
+	                        </div>
+	                        @endif
+	                        <div class="social-share">
+	                            <label class="title">Share:</label>
+	                            <ul class="list-socials">
+	                                <li><a class="btn-share btn-fb" href="http://www.facebook.com/sharer.php?u={{ url()->current() }}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+	                                <li><a class="btn-share btn-tw" href="https://twitter.com/share?url={{ url()->current() }}&amp;text={!! $detail->name !!}&amp;hashtags=baobihoahopphat" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+	                                <li><a class="btn-share btn-gp" href="https://plus.google.com/share?url={{ url()->current() }}" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>	                                
+	                            </ul>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div><!-- /block-slide-proview -->
+	            @if($detail->content)
+	            <div class="product-detail">
+	                <div class="tab product-tab">
+	                    <ul class="nav nav-tabs" role="tablist">
+						    <li role="presentation" class="active"><a href="#ctsp" aria-controls="ctsp" role="tab" data-toggle="tab">Chi tiết sản phẩm</a></li>						   
+					  	</ul>
+	                </div>
+	                 <!-- Tab panes -->
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="ctsp">
+							{!! $detail->content !!}
+						</div>						
 					</div>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="profile">
-					<div class="block-map">
-						<div id="map-abc" style="height:400px;clear:both;width:100%"></div>
+	            </div><!-- /product-detail -->
+	            @endif
+	        </div>
+	        @if($otherList)
+	        <div class="block-product-relatives">
+	        	<div class="block-title">
+	        		Sản phẩm liên quan
+	        	</div>
+	        	<div class="block-content">
+	        		<div class="row block-list-product">
+	        			@foreach($otherList as $product)
+						<div class="col-md-5ths col-xs-6">
+							<div class="item">
+								<div class="product-img">
+									<a href="{{ route('chi-tiet', [$product->slug_loai, $product->slug, $product->id]) }}" title="{!! $product->name !!}">
+										<img src="{{ Helper::showImage($product->image_url) }}" alt="{!! $product->name !!}">
+									</a>
+								</div>
+								<h2 class="product-name">{!! $product->name !!}</h2>
+							</div>
+						</div><!-- /col-md-5ths col-xs-6 -->
+						@endforeach
 					</div>
-				</div>
-			</div>
-	    </div><!-- /cate-news-detail-tab -->
-	    <hr>
-	    <div class="block-detail-info row">
-	    	<div class="col-sm-6">
-	    		<h3>Đặc điểm bất động sản</h3>
-	    		<table class="table table-customize">	    			
-	    			<tr>
-	    				<td><b>Mã tin</b></td>
-	    				<td>{{ $detail->id }}</td>
-	    			</tr>
-	    			<tr>
-	    				<td><b>Loại tin rao</b></td>
-	    				<td>{{ Helper::getName($detail->estate_type_id, 'estate_type') }}</td>
-	    			</tr>
-	    			<tr>
-	    				<td><b>Ngày đăng tin</b></td>
-	    				<td>{{ date('d/m/Y', strtotime($detail->created_at)) }}</td>
-	    			</tr>	    			
-	    			<tr>
-	    				<td><b>Hướng nhà</b></td>
-	    				<td>{{ $detail->direction_id > 0 ? Helper::getName($detail->direction_id, 'direction')  : "KXD" }}</td>
-	    			</tr>
-	    			<tr>
-	    				<td><b>Số phòng</b></td>
-	    				<td>{{ $detail->no_room }}</td>
-	    			</tr>
-	    			<tr>
-	    				<td><b>Số toilet</b></td>
-	    				<td>{{ $detail->no_wc }}</td>
-	    			</tr>
-	    			@if(!empty($tienIch))
-	    			<?php $countTag = count($tienIch); ?>
-	    			<tr>
-	    				<td><b>Tiện ích xung quanh</b></td>
-	    				<td>
-	    					<?php $i = 0; ?>
-							@foreach($tienIch as $tag)							
-							<?php $i++; ?>
-							<a href="{{ route('tag', $tag['slug']) }}">{{ $tag['name'] }}</a>@if($i< $countTag), @endif
-							@endforeach		
-	    				</td>
-	    			</tr>
-	    			@endif
-	    		</table>
-	    	</div>
-	    	<div class="col-sm-6">
-	    		<h3>Thông tin liên hệ</h3>
-	    		<table class="table table-customize">
-	    			<tr>
-	    				<td><b>Tên liên lạc</b></td>
-	    				<td>{{ $detail->contact_name }}</td>
-	    			</tr>
-	    			<tr>
-	    				<td><b>Địa chỉ</b></td>
-	    				<td>{{ Helper::getName($detail->district_id, 'district')}} - {{ Helper::getName($detail->city_id, 'city') }}</td>
-	    			</tr>
-	    			<tr>
-	    				<td><b>Di động</b></td>
-	    				<td>{{ $detail->contact_mobile }}</td>
-	    			</tr>
-	    			<tr>
-	    				<td><b>Email</b></td>
-	    				<td>{{ $detail->contact_email }}</td>
-	    			</tr>
-	    		</table>
-	    	</div>
-	    </div><!-- /block-detail-info -->	    
-	</article><!-- /block-cate-news-detail -->
-	@if(!empty((array)$tagSelected))
-	<?php $countTag = count($tagSelected);?>
-	<article class="block block-news-with-region">
-		<u>Tags</u>:
-		<?php $i = 0; ?>
-		@foreach($tagSelected as $tag)
-		<?php $i++; ?>
-		<a href="{{ route('tag', $tag->slug) }}">{{ $tag->name }}</a>@if($i< $countTag), @endif
-		@endforeach		
-	</article>
-	@endif
-	@if($otherList)
-	<article class="block block-news-with-region">
-		<div class="block-title block-title-common">
-			<h3><span class="icon-tile"><i class="fa fa-th-list"></i></span> TIN RAO CÙNG KHU VỰC</h3>
-		</div>
-		<div class="block-contents">
-			<div class="news-with-region-list">
-				<div class="row">
-					@foreach($otherList as $product)
-					<div class="col-sm-6 col-xs-12">
-						<div class="news-with-region-item clearfix">
-							<div class="news-with-region-title">
-								<a href="{{ route('chi-tiet', [$product->slug_loai, $product->slug, $product->id]) }}" title="{{ $product->title }}">{{ $product->title }}</a>
-							</div>
-							<div class="news-with-region-content">
-								<div class="news-with-region-img">
-									<a  href="{{ route('chi-tiet', [$product->slug_loai, $product->slug, $product->id]) }}"><img  title="" src="{{ $product->image_urls ? Helper::showImageThumb($product->image_urls) : URL::asset('admin/dist/img/no-image.jpg') }}" alt="" ></a>
-								</div>
-								<div class="news-with-region-info">
-									<p>
-			                            <label>Giá:</label>
-			                            <span>{{ $product->price }} {{ Helper::getName($product->price_unit_id, 'price_unit')}}</span>
-			                        </p>
-			                        <p>
-			                            <label>Diện tích:</label>
-			                            {{ $product->area }} m<sup>2</sup>
-			                        </p>
-			                        <p>
-			                            <label>Vị trí:</label>
-			                            {{ Helper::getName($product->district_id, 'district')}} - {{ Helper::getName($product->city_id, 'city')}}
-			                        </p>
-								</div>
-							</div>
-						</div>
-					</div><!-- /col-sm-6 col-xs-12 -->					
-					@endforeach
-				</div>				
-			</div>
-		</div>
-	</article><!-- /block-news-with-region -->
-	@endif
-</section><!-- /block-site-left -->
-
+	        	</div>
+	        </div><!-- /block-content -->
+	        @endif
+		</div><!-- /block-content -->
+	</div><!-- /block-product -->
+	</div><!-- /block-main -->
 @endsection
 @section('javascript_page')
-<script>
-
-      // This example adds a search box to a map, using the Google Place Autocomplete
-      // feature. People can enter geographical searches. The search box will return a
-      // pick list containing a mix of places and predicted search terms.
-
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-      <?php 
-      $latt = $detail->latt ? $detail->latt : '10.7860332';
-      $longt = $detail->longt ? $detail->longt : '106.6950147';      
-      ?>
-      function initAutocomplete() {
-      	
-        var myLatLng = {lat: {{ $latt }}, lng: {{ $longt }} };
-
-        var map = new google.maps.Map(document.getElementById('map-abc'), {
-          zoom: 17,
-          center: myLatLng
-        });
-
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map          
-        });
-        map.panTo(marker.getPosition());
-        $("a[href='#profile']").on('shown.bs.tab', function(){
-		  google.maps.event.trigger(map, 'resize');
-		  	map.panTo(marker.getPosition());
-			map.setZoom(17);
-		});
-      	   
-            
-      }
-    </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhxs7FQ3DcyDm8Mt7nCGD05BjUskp_k7w&libraries=places&callback=initAutocomplete"
-         async defer></script>
+<script src="{{ URL::asset('assets/vendor/jquery.zoom/jquery.zoom.min.js') }}"></script>
 <script type="text/javascript">
- $(document).ready(function () {
+$(document).ready(function () {            
+
     $('.bxslider .item').each(function () {
         $(this).zoom();
     });
 
     $(".bxslider").bxSlider({
-    	controls: false,
         pagerCustom: '.pro-thumb-img',
-        nextText: '<i class="fa fa-angle-right"></i>',
-        prevText: '<i class="fa fa-angle-left"></i>',
-        adaptiveHeight: true
+        nextText: '<i class="fa fa-chevron-right"></i>',
+        prevText: '<i class="fa fa-chevron-left"></i>'
     });
 
     $(".pro-thumb-img").bxSlider({
-        slideMargin: 20,
-        maxSlides: 4,
+        slideMargin: 10,
+        maxSlides: 5,
         pager: false,
-        controls: true,
-        slideWidth: 80,
-        infiniteLoop: false,
-        nextText: '<i class="fa fa-angle-right"></i>',
-        prevText: '<i class="fa fa-angle-left"></i>'
+        controls: false,
+        slideWidth: 50,
+        infiniteLoop: false
     });
-    /** COUNT DOWN **/
-	$('[data-countdown]').each(function() {
-		var $this = $(this), finalDate = $(this).data('countdown');
-		$this.countdown(finalDate, function(event) {
-			var fomat ='<i class="fa fa-clock-o"></i> <b>Thời gian còn lại:</b> <span>%D ngày,</span> <span>%H</span> : %M<span class="minute"></span> : %S<span class="seconds"></span>';
-			$this.html(event.strftime(fomat));
-		});
-	});
-	$('.bxslider').bxSlider({
-		pagerCustom: '#bx-pager',
-		pager: true,
-		adaptiveHeight: true
-	});
-	$('.slide-detail').bxSlider({
-		pagerCustom: '#bx-pager-detail',
-		pager: true,
-		adaptiveHeight: true,
-		auto : true,
-		pause : 4000
-	});
 
 });
-
-</script>
+</script>>
 @endsection

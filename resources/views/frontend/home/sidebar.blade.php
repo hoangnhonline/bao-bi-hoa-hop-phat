@@ -1,9 +1,9 @@
 <div class="col-sm-3 block-sidebar">
 				<section class="block block-search">
 					<div class="block-content">
-						<form action="formsearch.php" method="POST" class="form-inline">
+						<form method="GET" class="form-inline" action="{{ route('search') }}">
 							<div class="form-group input-serach-sidebar">
-								<input type="text" placeholder="Tìm sản phẩm và dịch vụ">
+								<input name="keyword" type="text" placeholder="Tìm sản phẩm" style="font-style:italic" value="{{ isset($tu_khoa) ? $tu_khoa : '' }}">
 							</div>
 							<button type="submit" class="btn-search"><i class="fa fa-search"></i></button>
 						</form>

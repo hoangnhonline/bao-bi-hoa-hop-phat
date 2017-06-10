@@ -38,8 +38,9 @@ class CateController extends Controller
 
         
         $query = Product::where('cate_id', $rsCate->id)->where('loai_id', $loai_id)
-                ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')                
-                ->select('product_img.image_url', 'product.*');
+                ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')  
+                ->join('loai_sp', 'loai_sp.id', '=','product.loai_id')                
+                ->select('product_img.image_url as image_url', 'product.*', 'loai_sp.slug as slug_loai'); 
                     
         $query->orderBy('product.id', 'desc');
         $productList = $query->paginate(30);        
@@ -51,7 +52,7 @@ class CateController extends Controller
         }
         $is_child = 1;
         
-        return view('frontend.cate.parent', compact('productList', 'cateArr', 'rs', 'rsCate', 'socialImage', 'seo', 'is_child'));
+        return view('frontend.cate.child', compact('productList', 'cateArr', 'rs', 'rsCate', 'socialImage', 'seo', 'is_child'));
     }    
     
     

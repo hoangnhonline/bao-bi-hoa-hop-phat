@@ -40,31 +40,31 @@ $bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3])-
         					<tbody>
         						<tr>
         							<td class="title"><img src="{{ URL::asset('assets/images/arrow1.png') }}" alt=""> Loại hình cty:</td>
-        							<td class="content">Nhà Sản Xuất</td>
+        							<td class="content">{!! $settingArr['loai_hinh'] !!}</td>
         						</tr>
         						<tr>
         							<td class="title"><img src="{{ URL::asset('assets/images/arrow1.png') }}" alt=""> SP/DV chính:</td>
-        							<td>Thùng carton 3 lớp, Thùng carton 5 lớp, Thùng ...</td>
+        							<td>{!! $settingArr['san_pham_dich_vu_chinh'] !!}</td>
         						</tr>
         						<tr>
-        							<td class="title"><img src="{{ URL::asset('assets/images/arrow1.png') }}" alt=""> Năm thành lập</td>
-        							<td>2008</td>
+        							<td class="title"><img src="{{ URL::asset('assets/images/arrow1.png') }}" alt=""> Năm thành lập</td>
+        							<td>{!! $settingArr['nam_thanh_lap'] !!}</td>
         						</tr>
         						<tr>
         							<td class="title"><img src="{{ URL::asset('assets/images/arrow1.png') }}" alt=""> Số thành viên</td>
-        							<td>Từ 51 - 100 người</td>
+        							<td>{!! $settingArr['so_thanh_vien'] !!}</td>
         						</tr>
         						<tr>
         							<td class="title"><img src="{{ URL::asset('assets/images/arrow1.png') }}" alt=""> Doanh thu/ năm</td>
-        							<td>Bí mật/ không public</td>
+        							<td>{!! $settingArr['doanh_thu'] !!}</td>
         						</tr>
         						<tr>
         							<td class="title"><img src="{{ URL::asset('assets/images/arrow1.png') }}" alt=""> Thị trường chính</td>
-        							<td>Toàn quốc</td>
+        							<td>{!! $settingArr['thi_truong_chinh'] !!}</td>
         						</tr>
         						<tr>
         							<td class="title" colspan="2">
-        								<a href="#" title="" class="link" target="_blank">Xem chi tiết...</a>
+        								<a href="{{ route('info') }}" title="" class="link" target="_blank">Xem chi tiết...</a>
         							</td>
         						</tr>
         					</tbody>

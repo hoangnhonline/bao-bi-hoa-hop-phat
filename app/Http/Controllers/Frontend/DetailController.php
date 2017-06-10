@@ -65,42 +65,13 @@ class DetailController extends Controller
             $socialImage = ProductImg::find($detail->thumbnail_id)->image_url;
         }
 
-        $otherList = Product::where('product.slug', '<>', '')
-                    ->where('product.type', $detail->type)
-                    ->where('product.district_id', $detail->district_id)
+        $otherList = Product::where('product.slug', '<>', '')                  
                     ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')            
                     ->join('loai_sp', 'loai_sp.id', '=','product.loai_id')      
-                    ->select('product_img.image_url as image_urls', 'product.*', 'loai_sp.slug as slug_loai')
-                    ->where('product_img.image_url', '<>', '')    
-                    ->where('product.id', '<>', $detail->id)                                     
-                    ->orderBy('product.cart_status', 'asc')
-                    ->orderBy('product.id', 'desc')->limit(6)->get();
-
-        $tagSelected = Product::getListTag($detail->id); 
-        $type = $detail->type;
-        $loai_id = $detail->loai_id;
-        $street_id = $detail->street_id;
-        $ward_id = $detail->ward_id;
-        $district_id = $detail->district_id;
-        $area_id = $detail->area_id;
-        $price_id = $detail->price_id;
-        $no_room = $detail->no_room;
-        $project_id = $detail->project_id;
-        $direction_id = $detail->direction_id;        
-        $tienIch = Product::productTienIchName($detail->id);
-        return view('frontend.detail.index', compact('detail', 'rsLoai', 'hinhArr', 'productArr', 'seo', 'socialImage', 'otherList', 'tagSelected',
-            'type',
-            'loai_id',
-            'street_id',
-            'ward_id',
-            'district_id',
-            'no_room',
-            'direction_id',
-            'area_id',
-            'project_id',
-            'price_id',
-            'tienIch'           
-            ));
+                    ->select('product_img.image_url as image_url', 'product.*', 'loai_sp.slug as slug_loai')
+                    ->where('product.id', '<>', $detail->id)
+                    ->orderBy('product.id', 'desc')->limit(5)->get();
+        return view('frontend.detail.index', compact('detail', 'rsLoai', 'hinhArr', 'productArr', 'seo', 'socialImage', 'otherList', 'tagSelected' ));
     }
     public function tagDetail(Request $request){
         $slug = $request->slug;

@@ -14,7 +14,7 @@
 		<span>Chia sẻ lên:</span>
 		<a href="http://www.facebook.com/sharer.php?u={{ url()->current() }}" target="_blank" title="facebook" class="facebook"><i class="fa fa-facebook"></i></a>
 		<a href="https://plus.google.com/share?url={{ url()->current() }}" target="_blank" title="google" class="google"><i class="fa fa-google-plus"></i></a>
-		<a  href="https://twitter.com/share?url={{ url()->current() }}&amp;text={!! $rs->name !!}&amp;hashtags=baobihoahopphat" target="_blank" title="twitter" class="twitter"><i class="fa fa-twitter"></i></a>		
+		<a  href="https://twitter.com/share?url={{ url()->current() }}&amp;text={!! $rsCate->name !!}&amp;hashtags=baobihoahopphat" target="_blank" title="twitter" class="twitter"><i class="fa fa-twitter"></i></a>		
 	</div>
 	<div class="block-content">
 		@if(!empty( (array) $productList ))

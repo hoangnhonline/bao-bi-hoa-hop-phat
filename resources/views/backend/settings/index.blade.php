@@ -66,11 +66,7 @@
                 <div class="form-group">
                   <label>Thông tin footer</label>
                   <textarea class="form-control" rows="3" name="cty_info" id="cty_info">{{ $settingArr['cty_info'] }}</textarea>
-                </div>
-                <div class="form-group" style="display:none">
-                  <label>Email CC</label>
-                  <textarea class="form-control" rows="3" name="email_cc" id="email_cc">{{ $settingArr['email_cc'] }}</textarea>
-                </div>
+                </div>                
                 <div class="form-group">
                   <label>Code google analystic </label>
                   <input type="text" class="form-control" name="google_analystic" id="google_analystic" value="{{ $settingArr['google_analystic'] }}">
