@@ -224,7 +224,7 @@ a.link:hover {
     transition: all 0.45s ease;
 }
 .menu .navbar-nav>li>a:hover {
-    color: #e9e9e9;
+    color: #fff;
     background-color: transparent;
 }
 .menu .navbar-nav>li>a:after {
@@ -476,6 +476,9 @@ a.link:hover {
     -o-transition: all 0.25s ease-out 0s;
     -ms-transition: all 0.25s ease-out 0s;
 }
+.block-menu-sidebar ul li.active a {
+    color: #FF0000;
+}
 .block-menu-sidebar ul li a:before {
     content: "\f105";
     font-family: "FontAwesome";
@@ -534,6 +537,12 @@ a.link:hover {
     background: #fff;
     text-align: center;
     margin-bottom: 30px;
+}
+.block-list-product .item:hover a {
+    -webkit-transition: all 0.25s ease-out 0s;
+    -o-transition: all 0.25s ease-out 0s;
+    -ms-transition: all 0.25s ease-out 0s;
+    color: #FF0000;
 }
 .block-list-product .item .product-img {
     border: 1px solid #ddd;
@@ -856,6 +865,27 @@ a.link:hover {
     text-transform: none;
     color: #543333;
     margin-bottom: 15px;
+}
+
+/*===== Breadcrumb =====*/
+.block-breadcrumb .breadcrumb {
+    background: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+.block-breadcrumb .breadcrumb li, .block-breadcrumb .breadcrumb a {
+    color: #252525;
+    font-size: 13px;
+}
+.block-breadcrumb .breadcrumb > li + li:before {
+    content: "\f105";
+    font-family: "FontAwesome";
+    font-size: 16px;
+    padding: 0 10px;
+    color: #000000;
+}
+.block-breadcrumb .breadcrumb li.active , .block-breadcrumb .breadcrumb .active a {
+    color: #eb2227;
 }
 
 /*===== Back To Top ======*/

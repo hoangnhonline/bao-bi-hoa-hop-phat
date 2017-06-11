@@ -3,6 +3,12 @@
 @include('frontend.partials.meta')
 @section('content')
 <div class="col-sm-12 block-main">
+    <div class="block block-breadcrumb">
+        <ul class="breadcrumb"> 
+            <li><a href="{{ route('home') }}" title="Trở về trang chủ">Trang chủ</a></li>
+            <li class="active">Liên hệ</li>
+        </ul>
+    </div><!-- /block-breadcrumb -->
     <div class="block-page block-page-title">
         <h3 class="block-title">Liên Hệ</h3>
         @if (count($errors) == 0)
@@ -10,7 +16,7 @@
             <div class="col-sm-4">
                 <div class="item">
                     <div class="icon">
-                        <img src="{{ URL::asset('assets/images/contact/icon_address.png') }}" alt="">
+                        <img src="{{ URL::asset('public/assets/images/contact/icon_address.png') }}" alt="">
                     </div>
                     <span class="title">Địa Chỉ</span>
                     <p>Khu C-KCN Việt Hương, Kp. Bình Giao, P. Thuận Giao, TX. Thuân An, Bình Dương</p>
@@ -19,7 +25,7 @@
             <div class="col-sm-4">
                 <div class="item">
                     <div class="icon">
-                        <img src="{{ URL::asset('assets/images/contact/icon_phone.png') }}" alt="">
+                        <img src="{{ URL::asset('public/assets/images/contact/icon_phone.png') }}" alt="">
                     </div>
                     <span class="title">Điện Thoại</span>
                     <p><span>Phone: 1800-900-300</span><span>Fax: 1800-900-200</span></p>
@@ -28,7 +34,7 @@
             <div class="col-sm-4">
                 <div class="item">
                     <div class="icon">
-                        <img src="{{ URL::asset('assets/images/contact/icon_mail.png') }}" alt="">
+                        <img src="{{ URL::asset('public/assets/images/contact/icon_mail.png') }}" alt="">
                     </div>
                     <span class="title">Email</span>
                     <p><span>sale@yourdomain.com</span><span>support@yourdomain.com</span></p>
@@ -84,4 +90,35 @@
         </div>
     </div><!-- /block-page -->
 </div><!-- /block-main -->
+@endsection
+@section('javascript_page')
+<script>
+        $(window, document, undefined).ready(function() {
+            $('input , textarea').blur(function() {
+            var $this = $(this);
+            if ($this.val())
+                $this.addClass('used');
+            else
+                $this.removeClass('used');
+            });
+            var $ripples = $('.ripples');
+            $ripples.on('click.Ripples', function(e) {
+                var $this = $(this);
+                var $offset = $this.parent().offset();
+                var $circle = $this.find('.ripplesCircle');
+
+                var x = e.pageX - $offset.left;
+                var y = e.pageY - $offset.top;
+
+                $circle.css({
+                    top: y + 'px',
+                    left: x + 'px'
+                });
+                $this.addClass('is-active');
+            });
+            $ripples.on('animationend webkitAnimationEnd mozAnimationEnd oanimationend MSAnimationEnd', function(e) {
+                $(this).removeClass('is-active');
+            });
+        });
+    </script>
 @endsection

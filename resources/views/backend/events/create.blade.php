@@ -1,6 +1,6 @@
 @extends('layout.backend')
 @section('content')
-<link rel="stylesheet" href="{{ URL::asset('assets/css/jquery.datetimepicker.min.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('public/assets/css/jquery.datetimepicker.min.css') }}">
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -148,7 +148,7 @@
 
 @stop
 @section('javascript_page')
-<script type="text/javascript" src="{{ URL::asset('assets/js/jquery.datetimepicker.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('public/assets/js/jquery.datetimepicker.min.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function(){
       var editor2 = CKEDITOR.replace( 'the_le',{

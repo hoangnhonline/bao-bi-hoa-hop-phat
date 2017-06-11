@@ -2,6 +2,13 @@
 @include('frontend.partials.meta')
 @section('content')
 <div class="col-sm-9 block-main">
+	<div class="block block-breadcrumb">
+	  <ul class="breadcrumb"> 
+	    <li><a href="{{ route('home') }}" title="Trở về trang chủ">Trang chủ</a></li>
+	    <li class="active">Tìm kiếm
+	    </li>
+	  </ul>
+	</div><!-- /block-breadcrumb -->
 <div class="block-product block-block-title block-page">
 	<h2 class="block-title">
 	Tìm kiếm theo từ khóa : <span style="color:blue">{!! $tu_khoa !!}</span>

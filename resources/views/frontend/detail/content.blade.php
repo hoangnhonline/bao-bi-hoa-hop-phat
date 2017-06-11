@@ -1,6 +1,13 @@
 @include('frontend.partials.meta')
 @section('content')
 <div class="col-sm-9 block-main">
+	<div class="block block-breadcrumb">
+      <ul class="breadcrumb"> 
+        <li><a href="{{ route('home') }}" title="Trở về trang chủ">Trang chủ</a></li>
+        <li><a href="{{ route('danh-muc', $detail->slug_loai) }}" title="{!! $detail->ten_loai !!}">{!! $detail->ten_loai !!}</a></li>
+        <li class="active">{!! $detail->name !!}</li>
+      </ul>
+  </div><!-- /block-breadcrumb -->
 	<div class="block-product block-block-title block-page">
 		<div class="block-content">
 			<div class="product-view">
@@ -97,7 +104,7 @@
 	</div><!-- /block-main -->
 @endsection
 @section('javascript_page')
-<script src="{{ URL::asset('assets/vendor/jquery.zoom/jquery.zoom.min.js') }}"></script>
+<script src="{{ URL::asset('public/assets/vendor/jquery.zoom/jquery.zoom.min.js') }}"></script>
 <script type="text/javascript">
 $(document).ready(function () {            
 

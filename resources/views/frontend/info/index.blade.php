@@ -7,8 +7,14 @@
 $bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
 ?>
 <div class="col-sm-9 block-main">
+    <div class="block block-breadcrumb">
+        <ul class="breadcrumb"> 
+            <li><a href="{{ route('home') }}" title="Trở về trang chủ">Trang chủ</a></li>
+            <li class="active">Hồ sơ công ty</li>
+        </ul>
+    </div><!-- /block-breadcrumb -->
     <div class="block-page block-page-title">
-        <h3 class="block-title">BAO BÌ ĐỒNG THUẬN PHÁT - CÔNG TY TNHH BAO BÌ ĐỒNG THUẬN PHÁT</h3>
+        <h3 class="block-title">BAO BÌ GIẤY HÒA HỢP PHÁT</h3>
         <div class="block-content row">
             <div class="col-sm-4 col-xs-12 block-slide-about">
                 <div class="block-content">
@@ -41,27 +47,27 @@ $bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3])-
                     <table class="table table-customize">
                         <tbody>
                             <tr>
-                                    <td class="title"><img src="{{ URL::asset('assets/images/arrow1.png') }}" alt=""> Loại hình cty:</td>
+                                    <td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt=""> Loại hình cty:</td>
                                     <td class="content">{!! $settingArr['loai_hinh'] !!}</td>
                                 </tr>
                                 <tr>
-                                    <td class="title"><img src="{{ URL::asset('assets/images/arrow1.png') }}" alt=""> SP/DV chính:</td>
+                                    <td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt=""> SP/DV chính:</td>
                                     <td>{!! $settingArr['san_pham_dich_vu_chinh'] !!}</td>
                                 </tr>
                                 <tr>
-                                    <td class="title"><img src="{{ URL::asset('assets/images/arrow1.png') }}" alt=""> Năm thành lập</td>
+                                    <td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt=""> Năm thành lập</td>
                                     <td>{!! $settingArr['nam_thanh_lap'] !!}</td>
                                 </tr>
                                 <tr>
-                                    <td class="title"><img src="{{ URL::asset('assets/images/arrow1.png') }}" alt=""> Số thành viên</td>
+                                    <td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt=""> Số thành viên</td>
                                     <td>{!! $settingArr['so_thanh_vien'] !!}</td>
                                 </tr>
                                 <tr>
-                                    <td class="title"><img src="{{ URL::asset('assets/images/arrow1.png') }}" alt=""> Doanh thu/năm</td>
+                                    <td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt=""> Doanh thu/năm</td>
                                     <td>{!! $settingArr['doanh_thu'] !!}</td>
                                 </tr>
                                 <tr>
-                                    <td class="title"><img src="{{ URL::asset('assets/images/arrow1.png') }}" alt=""> Thị trường chính</td>
+                                    <td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt=""> Thị trường chính</td>
                                     <td>{!! $settingArr['thi_truong_chinh'] !!}</td>
                                 </tr>                               
                         </tbody>

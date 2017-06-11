@@ -11,7 +11,7 @@
         <div class="col-md-5ths col-xs-6">
           <div class="item">
             <div class="product-img">
-              <a href="#" title="{!! $product->name !!}">
+              <a href="{{ route('chi-tiet', [$product->slug_loai, $product->slug, $product->id]) }}" title="{!! $product->name !!}">
                 <img src="{{ Helper::showImageThumb($product->image_url) }}" alt="{!! $product->name !!}">
               </a>
             </div>

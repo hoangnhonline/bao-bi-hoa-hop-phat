@@ -30,20 +30,20 @@
     <meta name="twitter:description" content="@yield('site_description')" />
     <meta name="twitter:title" content="@yield('title')" />        
     <meta name="twitter:image" content="{{ Helper::showImage($socialImage) }}" />
-	<link rel="icon" href="{{ URL::asset('assets/images/favicon.ico') }}" type="image/x-icon">
+	<link rel="icon" href="{{ URL::asset('public/assets/images/favicon.ico') }}" type="image/x-icon">
 	<!-- <link rel="shortcut icon" href="" type="image/x-icon">
 	<link rel="icon" href="" type="image/x-icon"> -->
 	<!-- ===== Style CSS Common ===== -->
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/css/style.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('public/assets/css/style.css') }}">
 	<!-- ===== Responsive CSS ===== -->
-    <link href="{{ URL::asset('assets/css/responsive.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('public/assets/css/responsive.css') }}" rel="stylesheet">
     
     <!-- HTML5 Shim and Respond.js') }} IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js') }} doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
-		<link href='{{ URL::asset('assets/animations-ie-fix.css') }}' rel='stylesheet'>
+		<link href='{{ URL::asset('public/assets/animations-ie-fix.css') }}' rel='stylesheet'>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js') }}"></script>
-		<script src="https://oss.maxcdn.com/libs/respond.{{ URL::asset('assets/js/1.4.2/respond.min.js') }}"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.{{ URL::asset('public/assets/js/1.4.2/respond.min.js') }}"></script>
 	<![endif]-->
 </head>
 <body>
@@ -151,20 +151,20 @@
 
 
 	<!-- ===== JS ===== -->
-	<script src="{{ URL::asset('assets/js/jquery.min.js') }}"></script>
+	<script src="{{ URL::asset('public/assets/js/jquery.min.js') }}"></script>
 	<!-- JS Bootstrap -->
-	<script src="{{ URL::asset('assets/vendor/bootstrap/bootstrap.min.js') }}"></script>
+	<script src="{{ URL::asset('public/assets/vendor/bootstrap/bootstrap.min.js') }}"></script>
 	<!-- JS Semantic UI -->
-	<script src="{{ URL::asset('assets/vendor/semantic-ui/semantic.min.js') }}"></script>
+	<script src="{{ URL::asset('public/assets/vendor/semantic-ui/semantic.min.js') }}"></script>
 	<!-- JS Nivo Slider -->
-	<script src="{{ URL::asset('assets/vendor/nivo-slider/jquery.nivo.slider.js') }}"></script>
-	<script src="{{ URL::asset('assets/vendor/nivo-slider/jquery.nivo.slider.pack.js') }}"></script>
+	<script src="{{ URL::asset('public/assets/vendor/nivo-slider/jquery.nivo.slider.js') }}"></script>
+	<script src="{{ URL::asset('public/assets/vendor/nivo-slider/jquery.nivo.slider.pack.js') }}"></script>
 	<!-- ===== JS Bxslider ===== -->
-	<script src="{{ URL::asset('assets/vendor/bxslider/jquery.bxslider.min.js') }}"></script>
+	<script src="{{ URL::asset('public/assets/vendor/bxslider/jquery.bxslider.min.js') }}"></script>
 	<!-- JS Sticky -->
-	<script src="{{ URL::asset('assets/vendor/sticky/jquery.sticky.js') }}"></script>
+	<script src="{{ URL::asset('public/assets/vendor/sticky/jquery.sticky.js') }}"></script>
 	<!-- Js Common -->
-	<script src="{{ URL::asset('assets/js/common.js') }}"></script>	
+	<script src="{{ URL::asset('public/assets/js/common.js') }}"></script>	
 	<script type="text/javascript"> 
 	$(window).on('load', function() {
 	    $('#slider').nivoSlider({
