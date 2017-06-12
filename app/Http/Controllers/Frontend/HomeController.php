@@ -34,6 +34,7 @@ class HomeController extends Controller
         foreach($loaiSpList as $loaiSp){
             $productArr[$loaiSp->id] = Product::where('product.slug', '<>', '')                   
                     ->where('product.status', 1)
+                    ->where('product.loai_id', $loaiSp->id)
                     ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')            
                     ->join('loai_sp', 'loai_sp.id', '=','product.loai_id')      
                     ->select('product_img.image_url as image_url', 'product.*', 'loai_sp.slug as slug_loai')                              
