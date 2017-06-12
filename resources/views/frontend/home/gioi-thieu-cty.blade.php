@@ -80,7 +80,7 @@ $bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3])-
 	                    <div class="info_contact">
                             <p>Ms.Nhị</p>
                             <p style="color: rgba(0,0,0,.87)">Tell: <strong>0984.99.80.81</strong></p>
-                            <a href="mailto:baobigiay.hoahopphatbd@gmail.com?subject=Lien he" title="" class="link">baobigiay.hoahopphatbd@gmail.com</a>
+                            <a href="mailto:baobigiay.hoahopphatbd@gmail.com?subject=Lien he" title="" class="link" style="font-size:12px">baobigiay.hoahopphatbd@gmail.com</a>
                         </div>
 	        		</div>
 	        	</div><!-- /block-contact-about -->
