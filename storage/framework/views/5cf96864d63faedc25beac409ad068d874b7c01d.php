@@ -22,7 +22,7 @@
     <meta property="og:title" content="<?php echo $__env->yieldContent('title'); ?>" />
     <meta property="og:description" content="<?php echo $__env->yieldContent('site_description'); ?>" />
     <meta property="og:url" content="<?php echo e(url()->current()); ?>" />
-    <meta property="og:site_name" content="iCho.vn" />
+    <meta property="og:site_name" content="Bao bì Hòa Hợp Phát" />
     <?php $socialImage = isset($socialImage) ? $socialImage : $settingArr['banner']; ?>
     <meta property="og:image" content="<?php echo e(Helper::showImage($socialImage)); ?>" />
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
@@ -30,20 +30,20 @@
     <meta name="twitter:description" content="<?php echo $__env->yieldContent('site_description'); ?>" />
     <meta name="twitter:title" content="<?php echo $__env->yieldContent('title'); ?>" />        
     <meta name="twitter:image" content="<?php echo e(Helper::showImage($socialImage)); ?>" />
-	<link rel="icon" href="<?php echo e(URL::asset('assets/images/favicon.ico')); ?>" type="image/x-icon">
+	<link rel="icon" href="<?php echo e(URL::asset('public/assets/images/favicon.ico')); ?>" type="image/x-icon">
 	<!-- <link rel="shortcut icon" href="" type="image/x-icon">
 	<link rel="icon" href="" type="image/x-icon"> -->
 	<!-- ===== Style CSS Common ===== -->
-	<link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('assets/css/style.css')); ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('public/assets/css/style.css')); ?>">
 	<!-- ===== Responsive CSS ===== -->
-    <link href="<?php echo e(URL::asset('assets/css/responsive.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(URL::asset('public/assets/css/responsive.css')); ?>" rel="stylesheet">
     
     <!-- HTML5 Shim and Respond.js') }} IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js') }} doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
-		<link href='<?php echo e(URL::asset('assets/animations-ie-fix.css')); ?>' rel='stylesheet'>
+		<link href='<?php echo e(URL::asset('public/assets/animations-ie-fix.css')); ?>' rel='stylesheet'>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js') }}"></script>
-		<script src="https://oss.maxcdn.com/libs/respond.<?php echo e(URL::asset('assets/js/1.4.2/respond.min.js')); ?>"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.<?php echo e(URL::asset('public/assets/js/1.4.2/respond.min.js')); ?>"></script>
 	<![endif]-->
 </head>
 <body>
@@ -53,7 +53,7 @@
 		<header id="header" class="header">
 			<section class="clearfix">
 				<div class="col-sm-3 col-xs-12 logo">
-					<img src="images/logo.jpg" alt="Logo">
+					<img src="<?php echo e(URL::asset('public/assets/images/logo.png')); ?>" alt="Logo">
 				</div>
 				<div class="col-sm-9 col-xs-12 info">
 					<div class="newsection_text">
@@ -85,10 +85,10 @@
 							<a href="<?php echo e(route('home')); ?>" title="Trang Chủ">Trang Chủ</a>
 						</li><!-- END MENU HOME -->
 						<li class="level0">
-							<a href="gioi-thieu.html" title="Giới Thiệu">Giới Thiệu</a>
+							<a href="<?php echo e(route('danh-muc', 'gioi-thieu')); ?>" title="Giới Thiệu">Giới Thiệu</a>
 						</li><!-- END MENU HOME -->
 						<li class="level0 parent">
-							<a href="san-pham.html" title="Sản Phẩm">Sản Phẩm</a>
+							<a href="<?php echo e(route('danh-muc', 'san-pham')); ?>" title="Sản Phẩm">Sản Phẩm</a>
 							<ul class="level0 submenu submenu-white">
 								<?php foreach($loaiSpList as $loaiSp): ?>
 								<li class="level1 <?php if($cateList[$loaiSp->id]->count() > 0): ?> parent <?php endif; ?>">
@@ -105,10 +105,10 @@
 							</ul>
 						</li><!-- END MENU HOME -->
 						<li class="level0">
-							<a href="ho-so-cong-ty.html" title="Hồ Sơ Công Ty">Hồ Sơ Công Ty</a>
+							<a href="<?php echo e(route('info')); ?>" title="Hồ Sơ Công Ty">Hồ Sơ Công Ty</a>
 						</li><!-- END MENU HOME -->
 						<li class="level0">
-							<a href="lien-he.html" title="Liên Hệ">Liên Hệ</a>
+							<a href="<?php echo e(route('contact')); ?>" title="Liên Hệ">Liên Hệ</a>
 						</li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
@@ -120,8 +120,9 @@
         <?php echo $__env->yieldContent('gioi_thieu'); ?>
 
 		<section class="block-2-col clearfix">
-			<?php echo $__env->make('frontend.home.sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
+			<?php if(\Request::route()->getName() != 'contact'): ?>
+				<?php echo $__env->make('frontend.home.sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>				
+			<?php endif; ?>
 			<?php echo $__env->yieldContent('content'); ?>
 		</section><!-- /block-2-col -->
 
@@ -150,21 +151,20 @@
 
 
 	<!-- ===== JS ===== -->
-	<script src="<?php echo e(URL::asset('assets/js/jquery.min.js')); ?>"></script>
+	<script src="<?php echo e(URL::asset('public/assets/js/jquery.min.js')); ?>"></script>
 	<!-- JS Bootstrap -->
-	<script src="<?php echo e(URL::asset('assets/vendor/bootstrap/bootstrap.min.js')); ?>"></script>
+	<script src="<?php echo e(URL::asset('public/assets/vendor/bootstrap/bootstrap.min.js')); ?>"></script>
 	<!-- JS Semantic UI -->
-	<script src="<?php echo e(URL::asset('assets/vendor/semantic-ui/semantic.min.js')); ?>"></script>
+	<script src="<?php echo e(URL::asset('public/assets/vendor/semantic-ui/semantic.min.js')); ?>"></script>
 	<!-- JS Nivo Slider -->
-	<script src="<?php echo e(URL::asset('assets/vendor/nivo-slider/jquery.nivo.slider.js')); ?>"></script>
-	<script src="<?php echo e(URL::asset('assets/vendor/nivo-slider/jquery.nivo.slider.pack.js')); ?>"></script>
+	<script src="<?php echo e(URL::asset('public/assets/vendor/nivo-slider/jquery.nivo.slider.js')); ?>"></script>
+	<script src="<?php echo e(URL::asset('public/assets/vendor/nivo-slider/jquery.nivo.slider.pack.js')); ?>"></script>
 	<!-- ===== JS Bxslider ===== -->
-	<script src="<?php echo e(URL::asset('assets/vendor/bxslider/jquery.bxslider.min.js')); ?>"></script>
+	<script src="<?php echo e(URL::asset('public/assets/vendor/bxslider/jquery.bxslider.min.js')); ?>"></script>
 	<!-- JS Sticky -->
-	<script src="<?php echo e(URL::asset('assets/vendor/sticky/jquery.sticky.js')); ?>"></script>
+	<script src="<?php echo e(URL::asset('public/assets/vendor/sticky/jquery.sticky.js')); ?>"></script>
 	<!-- Js Common -->
-	<script src="<?php echo e(URL::asset('assets/js/common.js')); ?>"></script>
-
+	<script src="<?php echo e(URL::asset('public/assets/js/common.js')); ?>"></script>	
 	<script type="text/javascript"> 
 	$(window).on('load', function() {
 	    $('#slider').nivoSlider({
@@ -205,6 +205,6 @@
         infiniteLoop: false
     });
 	</script>
-
+	<?php echo $__env->yieldContent('javascript_page'); ?>
 </body>
 </html>

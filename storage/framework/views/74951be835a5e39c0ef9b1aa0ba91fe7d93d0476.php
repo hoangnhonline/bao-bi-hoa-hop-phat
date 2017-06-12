@@ -4,7 +4,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="<?php echo e(URL::asset('admin/dist/img/user2-160x160.jpg')); ?>" class="img-circle" alt="User Image">
+        <img src="<?php echo e(URL::asset('public/admin/dist/img/user2-160x160.jpg')); ?>" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
         <p><?php echo e(Auth::user()->full_name); ?></p>
@@ -105,7 +105,7 @@
         <ul class="treeview-menu">
           <?php if(Auth::user()->role == 3): ?>
         
-          <li <?php echo e(\Request::route()->getName() == "settings.index" ? "class=active" : ""); ?>><a href="<?php echo e(route('settings.index')); ?>"><i class="fa fa-circle-o"></i> Thông tin NhaDat</a></li>
+          <li <?php echo e(\Request::route()->getName() == "settings.index" ? "class=active" : ""); ?>><a href="<?php echo e(route('settings.index')); ?>"><i class="fa fa-circle-o"></i> Thông tin CTY</a></li>
           <li <?php echo e((in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 2 )? "class=active" : ""); ?>>
             <a href="<?php echo e(route('custom-link.index', ['block_id' => 2 ])); ?>">
               <i class="fa fa-circle-o"></i>

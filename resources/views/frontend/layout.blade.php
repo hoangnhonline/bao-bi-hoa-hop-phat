@@ -53,7 +53,7 @@
 		<header id="header" class="header">
 			<section class="clearfix">
 				<div class="col-sm-3 col-xs-12 logo">
-					<img src="images/logo.jpg" alt="Logo">
+					<img src="{{ URL::asset('public/assets/images/logo.png') }}" alt="Logo Hoa Hop Phat">
 				</div>
 				<div class="col-sm-9 col-xs-12 info">
 					<div class="newsection_text">
@@ -136,7 +136,7 @@
 					</p>
 					<p>
 						<strong>Email:</strong> <a href="mailto:baobigiay.hoahopphatbd@gmail.com?subject=feedback" class="link"> baobigiay.hoahopphatbd@gmail.com</a> - 
-						<strong>Website:</strong><a href="#" title="" class="link">http://truongdeptrai.com</a>
+						<strong>Website:</strong><a href="http://baobigiayhoahopphat.vn/" title="" class="link" target="_blank"> http://baobigiayhoahopphat.vn/</a>
 					</p>
 				</address>
 			</div>

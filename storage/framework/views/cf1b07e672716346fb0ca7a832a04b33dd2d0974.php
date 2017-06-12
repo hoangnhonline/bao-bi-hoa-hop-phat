@@ -11,7 +11,7 @@
         <div class="col-md-5ths col-xs-6">
           <div class="item">
             <div class="product-img">
-              <a href="#" title="<?php echo $product->name; ?>">
+              <a href="<?php echo e(route('chi-tiet', [$product->slug_loai, $product->slug, $product->id])); ?>" title="<?php echo $product->name; ?>">
                 <img src="<?php echo e(Helper::showImageThumb($product->image_url)); ?>" alt="<?php echo $product->name; ?>">
               </a>
             </div>

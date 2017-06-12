@@ -39,27 +39,27 @@ $bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3])-
         				<table class="table table-customize">
         					<tbody>
         						<tr>
-        							<td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt=""> Loại hình cty:</td>
+        							<td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt="Loại hình cty"> Loại hình cty:</td>
         							<td class="content">{!! $settingArr['loai_hinh'] !!}</td>
         						</tr>
         						<tr>
-        							<td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt=""> SP/DV chính:</td>
+        							<td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt="SP/DV chính"> SP/DV chính:</td>
         							<td>{!! $settingArr['san_pham_dich_vu_chinh'] !!}</td>
         						</tr>
         						<tr>
-        							<td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt=""> Năm thành lập</td>
+        							<td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt="Năm thành lập"> Năm thành lập</td>
         							<td>{!! $settingArr['nam_thanh_lap'] !!}</td>
         						</tr>
         						<tr>
-        							<td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt=""> Số thành viên</td>
+        							<td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt="Số thành viên"> Số thành viên</td>
         							<td>{!! $settingArr['so_thanh_vien'] !!}</td>
         						</tr>
         						<tr>
-        							<td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt=""> Doanh thu/ năm</td>
+        							<td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt="Doanh thu/ năm"> Doanh thu/ năm</td>
         							<td>{!! $settingArr['doanh_thu'] !!}</td>
         						</tr>
         						<tr>
-        							<td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt=""> Thị trường chính</td>
+        							<td class="title"><img src="{{ URL::asset('public/assets/images/arrow1.png') }}" alt="Thị trường chính"> Thị trường chính</td>
         							<td>{!! $settingArr['thi_truong_chinh'] !!}</td>
         						</tr>
         						<tr>
@@ -78,10 +78,10 @@ $bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3])-
 	                        <p class="img2_contact_hoso">Tôi có thể giúp gì bạn?</p>
 	                    </div>
 	                    <div class="info_contact">
-	                    	<p>Mr.Sen</p>
-	                    	<p style="color: rgba(0,0,0,.87)">Tel: <strong>0909 999 999</strong></p>
-	                    	<a href="mailto:joe@example.com?subject=feedback" title="" class="link">abc@gmail.com</a>
-	                    </div>
+                            <p>Ms.Nhị</p>
+                            <p style="color: rgba(0,0,0,.87)">Tell: <strong>0984.99.80.81</strong></p>
+                            <a href="mailto:baobigiay.hoahopphatbd@gmail.com?subject=Lien he" title="" class="link">baobigiay.hoahopphatbd@gmail.com</a>
+                        </div>
 	        		</div>
 	        	</div><!-- /block-contact-about -->
         	</div>
