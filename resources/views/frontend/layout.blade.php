@@ -52,7 +52,7 @@
 
 		<header id="header" class="header">
 			<section class="clearfix">
-				<div class="col-sm-3 col-xs-12 logo">
+				<div class="col-sm-3 col-xs-12 logo text-center">
 					<img src="{{ URL::asset('public/assets/images/logo.png') }}" alt="Logo Hoa Hop Phat">
 				</div>
 				<div class="col-sm-9 col-xs-12 info">
