@@ -29,7 +29,7 @@
 							<div class="contact-sidebar-item-bottom">
 								<p class="contact-name">Ông Trần Ngọc Tới</p>
 								<p class="contact-position">Giám Đốc</p>
-								<p class="contact-phone">0931.82.40.42</p>
+								<p class="contact-phone">094.4567.444</p>
 								<!-- <div class="contact-add">
 									<a href="skype:2?chat"><img src="images/skype-icon.png" alt=""></a>
 									<a href="ymsgr:SendIM?baobitruongnx"><img src="images/Yahoo_3.png" alt=""></a>

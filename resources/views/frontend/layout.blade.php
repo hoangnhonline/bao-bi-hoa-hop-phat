@@ -78,7 +78,7 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse menu" id="bs-example-navbar-collapse-1">
 					<div class="text-center logo-menu-res">
-						<a title="Logo" href="index.html"><img src="images/logo.jpg" alt="Logo"></a>
+						<a title="Logo" href="{{ route('home') }}"><img src="images/logo.jpg" alt="Logo"></a>
 					</div>
 					<ul class="nav navbar-nav navbar-left">
 						<li class="level0">
